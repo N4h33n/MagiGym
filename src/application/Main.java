@@ -20,7 +20,7 @@ public class Main extends Application {
 			VBox root = loader.load(new FileInputStream("src/application/GymDataView.fxml"));
 			Scene scene = new Scene(root,400,400);
 			primaryStage.setScene(scene);
-			primaryStage.setTitle(" MagiGym Portal");
+			primaryStage.setTitle("MagiGym Portal");
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
