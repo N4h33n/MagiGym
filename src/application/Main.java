@@ -18,6 +18,8 @@ public class Main extends Application {
 			
 			
 			VBox root = loader.load(new FileInputStream("src/application/GymDataView.fxml"));
+			GymDataController controller = (GymDataController)loader.getController();
+			controller.applicationStage = primaryStage;
 			Scene scene = new Scene(root,400,400);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("MagiGym Portal");
