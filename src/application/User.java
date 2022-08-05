@@ -6,9 +6,16 @@ public class User {
 	int age;
 	String gender;
 	double currentWeight;
-
-
-	public String updateWeight(int weightEntered) {
+	
+	public User(String memberFirst, String memberLast, int memberAge, String memberGender, int memberCurrentWeight) {
+		firstName = memberFirst;
+		lastName = memberLast;
+		age = memberAge;
+		gender = memberGender;
+		currentWeight = memberCurrentWeight;
+	}	
+  
+  public String updateWeight(int weightEntered) {
 		String result;
 		
 		double weightChange = weightEntered - currentWeight;
@@ -24,5 +31,6 @@ public class User {
 		}
 		return result;
 	
-	}
 }	
+}
+
