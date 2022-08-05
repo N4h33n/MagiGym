@@ -2,6 +2,7 @@ package application;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -30,6 +31,8 @@ public class GymDataController {
 
     @FXML
     void createAccount(ActionEvent event) {
+    	Scene createAccountScene = new Scene(new Label("We Shall Add things"));
+    	applicationStage.setScene(createAccountScene);
     	
 
     }
