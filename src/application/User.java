@@ -5,7 +5,7 @@ public class User {
 	String lastName;
 	int age;
 	String gender;
-	int currentWeight;
+	double currentWeight;
 	
 	public User(String memberFirst, String memberLast, int memberAge, String memberGender, int memberCurrentWeight) {
 		firstName = memberFirst;
@@ -13,5 +13,24 @@ public class User {
 		age = memberAge;
 		gender = memberGender;
 		currentWeight = memberCurrentWeight;
-	}
+	}	
+  
+  public String updateWeight(int weightEntered) {
+		String result;
+		
+		double weightChange = weightEntered - currentWeight;
+		currentWeight = weightEntered;
+		if (weightChange > 0) {
+			result = ("You gainded" + weightChange + "kg"); 
+		}
+		if (weightChange < 0) {
+			result = ("You lost" + Math.abs(weightChange) + "kg");
+		}
+		else {
+			result = ("Your weight has not changed!");
+		}
+		return result;
+	
+}	
 }
+
