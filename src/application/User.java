@@ -6,17 +6,18 @@ public class User {
 	private int age;
 	private String gender;
 	private double currentWeight;
-	private Object password;
+	private String password;
 	
-	public User(String memberFirst, String memberLast, int memberAge, String memberGender, int memberCurrentWeight, Object memberPassword) {
+	public User(String memberFirst, String memberLast, int memberAge, String memberGender, int memberCurrentWeight, String memberPassword) {
 		setFirstName(memberFirst);
 		setLastName(memberLast);
 		setAge(memberAge);
 		setGender(memberGender);
 		setCurrentWeight(memberCurrentWeight);
 		setPassword(memberPassword);
+		
 	}	
-  
+ 
   public String updateWeight(int weightEntered) {
 		String result;
 		
@@ -85,12 +86,18 @@ void setCurrentWeight(double currentWeight) {
 	this.currentWeight = currentWeight;
 }
 
-public Object getPassword() {
+public String getPassword() {
+	
 	return password;
+
 }
 
-public void setPassword(Object password) {
-	this.password = password;
+public void setPassword(String password) {
+	
+	if (password.length() >= 6 && password.length() <= 10 ) {
+		this.password = password;
+	}
+	
 }	
 }
 
