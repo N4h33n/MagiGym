@@ -1,25 +1,27 @@
 package application;
 
 public class User {
-	String firstName;
-	String lastName;
-	int age;
-	String gender;
-	double currentWeight;
+	private String firstName;
+	private String lastName;
+	private int age;
+	private String gender;
+	private double currentWeight;
+	private Object password;
 	
-	public User(String memberFirst, String memberLast, int memberAge, String memberGender, int memberCurrentWeight) {
-		firstName = memberFirst;
-		lastName = memberLast;
-		age = memberAge;
-		gender = memberGender;
-		currentWeight = memberCurrentWeight;
+	public User(String memberFirst, String memberLast, int memberAge, String memberGender, int memberCurrentWeight, Object memberPassword) {
+		setFirstName(memberFirst);
+		setLastName(memberLast);
+		setAge(memberAge);
+		setGender(memberGender);
+		setCurrentWeight(memberCurrentWeight);
+		setPassword(memberPassword);
 	}	
   
   public String updateWeight(int weightEntered) {
 		String result;
 		
-		double weightChange = weightEntered - currentWeight;
-		currentWeight = weightEntered;
+		double weightChange = weightEntered - getCurrentWeight();
+		setCurrentWeight(weightEntered);
 		if (weightChange > 0) {
 			result = ("You gainded" + weightChange + "kg"); 
 		}
@@ -31,6 +33,64 @@ public class User {
 		}
 		return result;
 	
+}
+  
+
+public String getFirstName() {
+	
+	return firstName;
+}
+
+public void setFirstName(String firstName) {
+	this.firstName = firstName;
+}
+
+public String getLastName() {
+	return lastName;
+}
+
+public void setLastName(String lastName) {
+	this.lastName = lastName;
+}
+
+int getAge() {
+	
+	return age;
+}
+
+void setAge(int age) {
+	if ( age > 18 && age <100) {
+		this.age = age;
+	}
+	else {
+		this.age = 0;
+	}
+	
+}
+
+String getGender() {
+	return gender;
+}
+
+void setGender(String gender) {
+	this.gender = gender;
+}
+
+double getCurrentWeight() {
+	return currentWeight;
+}
+
+void setCurrentWeight(double currentWeight) {
+	
+	this.currentWeight = currentWeight;
+}
+
+public Object getPassword() {
+	return password;
+}
+
+public void setPassword(Object password) {
+	this.password = password;
 }	
 }
 
