@@ -24,9 +24,38 @@ public class GymDataController {
     
 
     @FXML
+
     void getLogInScene(ActionEvent event) {
+    	Scene mainScene = applicationStage.getScene();
+    	VBox logInContainer = new VBox();
     	
-    	Scene logInScene = new Scene(new Label("We will update"));
+    
+    	Label userNameLabel = new Label();
+    	userNameLabel.setText("Name : ");
+    	
+    	Label userAgeLabel = new Label();
+    	userAgeLabel.setText("Age: ");
+    	
+    	Label userWeight = new Label();
+    	userWeight.setText("Your current weight is: ");
+    	
+    	HBox weightContainer = new HBox();
+    	Label inputWeightLabel = new Label();
+    	inputWeightLabel.setText("Input your current weight ");
+    	TextField inputWeightTextField = new TextField();
+    	
+    	weightContainer.getChildren().addAll(inputWeightLabel, inputWeightTextField);
+    	Button enterWeight = new Button("Enter Weight");
+    	
+    	Label weightUpdateLabel = new Label();
+    	weightUpdateLabel.setText(" ");
+    	
+    	logInContainer.getChildren().addAll(userNameLabel, userAgeLabel, userWeight, weightContainer, enterWeight, weightUpdateLabel);
+    	
+
+ 
+
+      Scene logInScene = new Scene(logInContainer);
     	applicationStage.setScene(logInScene);
     }
 
