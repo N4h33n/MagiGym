@@ -50,11 +50,13 @@ public String getFirstName() {
 
 public void setFirstName(String firstName) {
 	boolean errorFirst = false;
-	//for(int i = 0; i < firstName.length(); i++) {
-		//if(isalpha(firstName.charAt(i))) {
-	//}
-	
-	this.firstName = firstName;//}
+	for(int i = 0; i < firstName.length(); i++) {
+		if(!Character.isLetter(firstName.charAt(i))) {
+			errorFirst = true;
+		}
+	}
+	if(!errorFirst) {
+	this.firstName = firstName;}
 }
 
 public String getLastName() {
@@ -62,7 +64,14 @@ public String getLastName() {
 }
 
 public void setLastName(String lastName) {
-	this.lastName = lastName;
+	boolean errorLast = false;
+	for(int i = 0; i < lastName.length(); i++) {
+		if(!Character.isLetter(lastName.charAt(i))) {
+			errorLast = true;
+		}
+	}
+	if(!errorLast) {
+	this.lastName = lastName;}
 }
 
 int getAge() {
