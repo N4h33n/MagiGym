@@ -24,7 +24,7 @@ public class GymDataController {
     
 
     @FXML
-    void logIn(ActionEvent event) {
+    void getLogInScene(ActionEvent event) {
     	
     	Scene logInScene = new Scene(new Label("We will update"));
     	applicationStage.setScene(logInScene);
@@ -33,7 +33,7 @@ public class GymDataController {
     
 
     @FXML
-    void createAccount(ActionEvent event) {
+    void getCreateAccountScene(ActionEvent event) {
     	Scene mainScene = applicationStage.getScene();
     	VBox createAccContainer = new VBox();
     	
@@ -84,7 +84,10 @@ public class GymDataController {
     	cancelButton.setText("Cancel");
     	createAccButtonsContainer.getChildren().addAll(createAccButton, cancelButton);
     	
-    	createAccContainer.getChildren().addAll(firstNameContainer, lastNameContainer,passwordContainer, ageContainer, genderContainer, weightContainer, createAccButtonsContainer);
+    	Label createAccErrorLabel = new Label();
+    	createAccErrorLabel.setText("");
+    	
+    	createAccContainer.getChildren().addAll(firstNameContainer, lastNameContainer,passwordContainer, ageContainer, genderContainer, weightContainer, createAccButtonsContainer, createAccErrorLabel);
     	
     	Scene createAccountScene = new Scene(createAccContainer);
     	applicationStage.setScene(createAccountScene);
