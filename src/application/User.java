@@ -1,12 +1,12 @@
 package application;
 
 public class User {
-	private String firstName;
-	private String lastName;
-	private int age;
-	private String gender;
-	private double currentWeight;
-	private String password;
+	private String firstName = null;
+	private String lastName = null;
+	private int age = -1;
+	private String gender = null;
+	private double currentWeight = -1;
+	private String password = null;
 	
 	public User(String memberFirst, String memberLast, int memberAge, String memberGender, int memberCurrentWeight, String memberPassword) {
 		setFirstName(memberFirst);
@@ -38,11 +38,15 @@ public class User {
   
 
 public String getFirstName() {
-	
 	return firstName;
 }
 
 public void setFirstName(String firstName) {
+	boolean errorFirst = false;
+	//for(int i = 0; i < firstName.length(); i++) {
+		//if(isalpha('a')) {
+	//}
+	
 	this.firstName = firstName;
 }
 
