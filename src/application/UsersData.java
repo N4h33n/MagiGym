@@ -3,7 +3,11 @@ package application;
 import java.util.ArrayList;
 
 public class UsersData {
-	ArrayList<User> listOfUsers;
+	private ArrayList<User> listOfUsers ;
+	
+	public UsersData(ArrayList<User> userList) {
+		listOfUsers = new ArrayList<User>();
+	}
 
 	public ArrayList<User> getListOfUsers() {
 		return listOfUsers;
