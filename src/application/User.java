@@ -63,9 +63,7 @@ void setAge(int age) {
 	if ( age > 18 ) {
 		this.age = age;
 	}
-	else {
-		this.age = 0;
-	}
+	
 	
 }
 
