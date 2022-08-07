@@ -24,7 +24,8 @@ public class GymDataController {
     
 
     @FXML
-    void logIn(ActionEvent event) {
+
+    void getLogInScene(ActionEvent event) {
     	Scene mainScene = applicationStage.getScene();
     	VBox logInContainer = new VBox();
     	
@@ -51,15 +52,17 @@ public class GymDataController {
     	
     	logInContainer.getChildren().addAll(userNameLabel, userAgeLabel, userWeight, weightContainer, enterWeight, weightUpdateLabel);
     	
-    	
-    	Scene logInScene = new Scene(logInContainer);
+
+ 
+
+      Scene logInScene = new Scene(logInContainer);
     	applicationStage.setScene(logInScene);
     }
 
     
 
     @FXML
-    void createAccount(ActionEvent event) {
+    void getCreateAccountScene(ActionEvent event) {
     	Scene mainScene = applicationStage.getScene();
     	VBox createAccContainer = new VBox();
     	
@@ -103,7 +106,17 @@ public class GymDataController {
     	unitLabel.setText("kg");
     	weightContainer.getChildren().addAll(weightLabel, weightTextField, unitLabel);
     	
-    	createAccContainer.getChildren().addAll(firstNameContainer, lastNameContainer,passwordContainer, ageContainer, genderContainer, weightContainer);
+    	HBox createAccButtonsContainer = new HBox();
+    	Button createAccButton = new Button();
+    	createAccButton.setText("Create Account");
+    	Button cancelButton = new Button();
+    	cancelButton.setText("Cancel");
+    	createAccButtonsContainer.getChildren().addAll(createAccButton, cancelButton);
+    	
+    	Label createAccErrorLabel = new Label();
+    	createAccErrorLabel.setText("");
+    	
+    	createAccContainer.getChildren().addAll(firstNameContainer, lastNameContainer,passwordContainer, ageContainer, genderContainer, weightContainer, createAccButtonsContainer, createAccErrorLabel);
     	
     	Scene createAccountScene = new Scene(createAccContainer);
     	applicationStage.setScene(createAccountScene);
