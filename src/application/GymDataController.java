@@ -3,6 +3,7 @@ package application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -76,7 +77,14 @@ public class GymDataController {
     	unitLabel.setText("kg");
     	weightContainer.getChildren().addAll(weightLabel, weightTextField, unitLabel);
     	
-    	createAccContainer.getChildren().addAll(firstNameContainer, lastNameContainer,passwordContainer, ageContainer, genderContainer, weightContainer);
+    	HBox createAccButtonsContainer = new HBox();
+    	Button createAccButton = new Button();
+    	createAccButton.setText("Create Account");
+    	Button cancelButton = new Button();
+    	cancelButton.setText("Cancel");
+    	createAccButtonsContainer.getChildren().addAll(createAccButton, cancelButton);
+    	
+    	createAccContainer.getChildren().addAll(firstNameContainer, lastNameContainer,passwordContainer, ageContainer, genderContainer, weightContainer, createAccButtonsContainer);
     	
     	Scene createAccountScene = new Scene(createAccContainer);
     	applicationStage.setScene(createAccountScene);
