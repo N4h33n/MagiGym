@@ -111,6 +111,7 @@ public class GymDataController {
     	createAccButton.setText("Create Account");
     	Button cancelButton = new Button();
     	cancelButton.setText("Cancel");
+    	cancelButton.setOnAction(cancelEvent -> applicationStage.setScene(mainScene));
     	createAccButtonsContainer.getChildren().addAll(createAccButton, cancelButton);
     	
     	Label createAccErrorLabel = new Label();
