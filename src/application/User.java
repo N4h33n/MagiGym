@@ -8,7 +8,7 @@ public class User {
 	private double currentWeight = -1;
 	private String password = null;
 	
-	public User(String memberFirst, String memberLast, int memberAge, String memberGender, int memberCurrentWeight, String memberPassword) {
+	public User(String memberFirst, String memberLast, String memberAge, String memberGender, String memberCurrentWeight, String memberPassword) {
 		setFirstName(memberFirst);
 		setLastName(memberLast);
 		setAge(memberAge);
@@ -18,10 +18,13 @@ public class User {
 		
 	}	
  
-  public String updateWeight(int weightEntered) {
+  public String updateWeight(String weightEntered) {
 		String result;
+		try {
+			Double updatedWeight = Double.parseDouble(weightEntered);
 		
-		double weightChange = weightEntered - getCurrentWeight();
+		
+		double weightChange = updatedWeight - getCurrentWeight();
 		setCurrentWeight(weightEntered);
 		if (weightChange > 0) {
 			result = ("You gainded" + weightChange + "kg"); 
@@ -33,6 +36,10 @@ public class User {
 			result = ("Your weight has not changed!");
 		}
 		return result;
+		}
+		catch(NumberFormatException e) {
+			return null;
+		}
 	
 }
   
@@ -43,11 +50,13 @@ public String getFirstName() {
 
 public void setFirstName(String firstName) {
 	boolean errorFirst = false;
-	//for(int i = 0; i < firstName.length(); i++) {
-		//if(isalpha('a')) {
-	//}
-	
-	this.firstName = firstName;
+	for(int i = 0; i < firstName.length(); i++) {
+		if(!Character.isLetter(firstName.charAt(i))) {
+			errorFirst = true;
+		}
+	}
+	if(!errorFirst) {
+	this.firstName = firstName;}
 }
 
 public String getLastName() {
@@ -55,7 +64,14 @@ public String getLastName() {
 }
 
 public void setLastName(String lastName) {
-	this.lastName = lastName;
+	boolean errorLast = false;
+	for(int i = 0; i < lastName.length(); i++) {
+		if(!Character.isLetter(lastName.charAt(i))) {
+			errorLast = true;
+		}
+	}
+	if(!errorLast) {
+	this.lastName = lastName;}
 }
 
 int getAge() {
@@ -63,10 +79,18 @@ int getAge() {
 	return age;
 }
 
-void setAge(int age) {
-	if ( age > 18 ) {
-		this.age = age;
+void setAge(String age) {
+	try {
+		int ageAsInt = Integer.parseInt(age);
+		if(ageAsInt >= 18) {
+			this.age = ageAsInt;
+		}
+		else {this.age = -1;}
 	}
+	catch(NumberFormatException e) {
+		
+	}
+	
 	
 	
 }
@@ -83,9 +107,15 @@ double getCurrentWeight() {
 	return currentWeight;
 }
 
-void setCurrentWeight(double currentWeight) {
+void setCurrentWeight(String currentWeight) {
+	try {
+		this.currentWeight = Double.parseDouble(currentWeight);
 	
-	this.currentWeight = currentWeight;
+	}
+	catch(NumberFormatException e) {
+		
+	}
+	
 }
 
 public String getPassword() {
