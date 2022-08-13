@@ -25,41 +25,36 @@ public class GymDataController {
     @FXML
     private TextField passwordTextField;
 
-    ObservableList<String> listNames = FXCollections.emptyObservableList();
+    ArrayList<String> listNames = new ArrayList<String>();
     
     @FXML
-    private ChoiceBox<String> selectUserChoiceBox = new ChoiceBox<String>(FXCollections.observableArrayList(listNames));
+    private ChoiceBox<String> selectUserChoiceBox;
     
     private UsersData members = new UsersData(new ArrayList<User>());
 
     
    Map<String, User> memberMap = new HashMap<>();
    
-   void createUserChoiceBox(ChoiceBox<String> userChoiceBox) {
-	   selectUserChoiceBox.setItems(listNames);
-   }
-    
-   @FXML
-    void getLogInScene(ActionEvent event) {
+    void getLogInScene(User currentUser) {
     	Scene mainScene = applicationStage.getScene();
     	VBox logInContainer = new VBox();
     	
     
     	Label userNameLabel = new Label();
-    	userNameLabel.setText("Name : ");
+    	userNameLabel.setText("Name : " + currentUser.getFirstName() + currentUser.getLastName());
     	
     	Label userAgeLabel = new Label();
-    	userAgeLabel.setText("Age: ");
+    	userAgeLabel.setText("Age: " + currentUser.getAge());
     	
     	Label userHeight = new Label();
-    	userHeight.setText("Your current height is: ");
+    	userHeight.setText("Your current height is: " + currentUser.getHeight() + "m");
     	
     	Label userWeight = new Label();
-    	userWeight.setText("Your current weight is: ");
+    	userWeight.setText("Your current weight is: " + currentUser.getCurrentWeight() + "kg");
     	
     	HBox weightContainer = new HBox();
     	Label inputWeightLabel = new Label();
-    	inputWeightLabel.setText("Input your current weight ");
+    	inputWeightLabel.setText("Input your current weight: ");
     	TextField inputWeightTextField = new TextField();
     	
     	weightContainer.getChildren().addAll(inputWeightLabel, inputWeightTextField);
@@ -76,6 +71,15 @@ public class GymDataController {
       Scene logInScene = new Scene(logInContainer);
     	applicationStage.setScene(logInScene);
     }
+   
+   @FXML
+   void logIn() {
+	   String selectedUser = selectUserChoiceBox.getValue();
+	   User currentUser = memberMap.get(selectedUser);
+	   if(passwordTextField.getText().equals(currentUser.getPassword())) {
+		   getLogInScene(currentUser);
+	   }
+   }
 
     
 
@@ -121,7 +125,7 @@ public class GymDataController {
     	heightLabel.setText("Enter your height in meters");
     	TextField heightTextField = new TextField();
     	Label heightUnitLabel = new Label();
-    	heightUnitLabel.setText("kg");
+    	heightUnitLabel.setText("m");
     	heightContainer.getChildren().addAll(heightLabel, heightTextField, heightUnitLabel);
     	
     	HBox weightContainer = new HBox();
@@ -147,7 +151,7 @@ public class GymDataController {
     	
     	Scene createAccountScene = new Scene(createAccContainer);
     	applicationStage.setScene(createAccountScene);
-    	
+    	createAccButton.setOnAction(createAccEvent -> createAccount(mainScene, firstNameTextField, lastNameTextField, passwordTextField, ageTextField, genderChoiceBox , heightTextField, weightTextField));
 
     }
     
@@ -180,8 +184,11 @@ public class GymDataController {
     	if(!errorInCreateAcc) {
     		members.addUser(newUser);
     		listNames.add(firstNameTextField.getText() + " " + lastNameTextField.getText());
+    		selectUserChoiceBox.getItems().addAll(FXCollections.observableArrayList(listNames));
+    		applicationStage.setScene(mainScene);
     	}
     	else {
+    		System.out.println("error" + newUser.getFirstName() + newUser.getLastName() + newUser.getAge() + newUser.getGender() + newUser.getHeight() + newUser.getCurrentWeight());
     		memberMap.remove(firstNameTextField.getText() + " " + lastNameTextField.getText());
     	}
     	
