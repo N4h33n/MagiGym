@@ -16,7 +16,7 @@ public class GymDataController {
 	Stage applicationStage;
 
     @FXML
-    private TextField passwordTextFiled;
+    private TextField passwordTextField;
 
     @FXML
     private ChoiceBox<?> selectUserChoiceBox;
@@ -111,6 +111,7 @@ public class GymDataController {
     	createAccButton.setText("Create Account");
     	Button cancelButton = new Button();
     	cancelButton.setText("Cancel");
+    	cancelButton.setOnAction(cancelEvent -> applicationStage.setScene(mainScene));
     	createAccButtonsContainer.getChildren().addAll(createAccButton, cancelButton);
     	
     	Label createAccErrorLabel = new Label();
@@ -122,6 +123,31 @@ public class GymDataController {
     	applicationStage.setScene(createAccountScene);
     	
 
+    }
+    
+    void createAccount(Scene mainScene, TextField firstNameTextField, TextField lastNameTextField , TextField passwordTextField , TextField ageTextField , ChoiceBox<String> genderChoiceBox , TextField weightTextField) {
+    	boolean errorInCreateAcc = false;
+    	User newUser = new User(firstNameTextField.getText(), lastNameTextField.getText(), passwordTextField.getText(), ageTextField.getText() , genderChoiceBox.getValue(),weightTextField.getText() );
+    	if (newUser.getFirstName() == null) {
+    		errorInCreateAcc = true;
+    	}
+    	if (newUser.getLastName() == null) {
+    		errorInCreateAcc = true;
+    	}
+    	if (newUser.getPassword() == null) {
+    		errorInCreateAcc = true;
+    	}
+    	if (newUser.getAge() == -1) {
+    		errorInCreateAcc = true;
+    	}
+    	if (newUser.getGender() == null) {
+    		errorInCreateAcc = true;
+    	}
+    	if (newUser.getCurrentWeight() == -1) {
+    		errorInCreateAcc = true;
+    	}
+    	
+    	
     }
 
     
