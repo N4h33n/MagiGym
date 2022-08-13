@@ -74,12 +74,12 @@ public void setLastName(String lastName) {
 	this.lastName = lastName;}
 }
 
-int getAge() {
+public int getAge() {
 	
 	return age;
 }
 
-void setAge(String age) {
+public void setAge(String age) {
 	try {
 		int ageAsInt = Integer.parseInt(age);
 		if(ageAsInt >= 18) {
@@ -95,19 +95,19 @@ void setAge(String age) {
 	
 }
 
-String getGender() {
+public String getGender() {
 	return gender;
 }
 
-void setGender(String gender) {
+public void setGender(String gender) {
 	this.gender = gender;
 }
 
-double getCurrentWeight() {
+public double getCurrentWeight() {
 	return currentWeight;
 }
 
-void setCurrentWeight(String currentWeight) {
+public void setCurrentWeight(String currentWeight) {
 	try {
 		this.currentWeight = Double.parseDouble(currentWeight);
 	

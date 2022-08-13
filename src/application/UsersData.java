@@ -13,4 +13,7 @@ public class UsersData {
 		return listOfUsers;
 	}
 
+	public void addUser(User newUser) {
+		listOfUsers.add(newUser);
+	}
 }

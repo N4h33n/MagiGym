@@ -52,7 +52,7 @@
                   <Insets bottom="18.0" left="20.0" right="50.0" top="-100.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="passwordTextFiled">
+            <TextField fx:id="passwordTextField">
                <HBox.margin>
                   <Insets bottom="18.0" right="100.0" top="-100.0" />
                </HBox.margin>
