@@ -59,7 +59,7 @@
             </TextField>
          </children>
       </HBox>
-      <Button mnemonicParsing="false" onAction="#getLogInScene" prefHeight="25.0" prefWidth="66.0" text="Log In" textFill="#354251">
+      <Button mnemonicParsing="false" onAction="#logIn" prefHeight="25.0" prefWidth="66.0" text="Log In" textFill="#354251">
          <VBox.margin>
             <Insets bottom="50.0" left="180.0" right="30.0" top="-100.0" />
          </VBox.margin>
