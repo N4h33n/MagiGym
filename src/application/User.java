@@ -5,14 +5,16 @@ public class User {
 	private String lastName = null;
 	private int age = -1;
 	private String gender = null;
+	private double height = -1;
 	private double currentWeight = -1;
 	private String password = null;
 	
-	public User(String memberFirst, String memberLast, String memberAge, String memberGender, String memberCurrentWeight, String memberPassword) {
+	public User(String memberFirst, String memberLast, String memberAge, String memberGender, String height, String memberCurrentWeight, String memberPassword) {
 		setFirstName(memberFirst);
 		setLastName(memberLast);
 		setAge(memberAge);
 		setGender(memberGender);
+		setHeight(height);
 		setCurrentWeight(memberCurrentWeight);
 		setPassword(memberPassword);
 		
@@ -130,6 +132,20 @@ public void setPassword(String password) {
 		this.password = password;
 	}
 	
+}
+
+double getHeight() {
+	return height;
+}
+
+void setHeight(String height) {
+	try {
+		this.height = Double.parseDouble(height);
+	
+	}
+	catch(NumberFormatException e) {
+		
+	}
 }	
 }
 
