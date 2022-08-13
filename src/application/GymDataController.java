@@ -1,5 +1,7 @@
 package application;
 
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -20,6 +22,8 @@ public class GymDataController {
 
     @FXML
     private ChoiceBox<?> selectUserChoiceBox;
+    
+    private UsersData membersList = new UsersData(new ArrayList<User>());
 
     
 
@@ -159,6 +163,10 @@ public class GymDataController {
     	}
     	if (newUser.getCurrentWeight() == -1) {
     		errorInCreateAcc = true;
+    	}
+    	
+    	if(!errorInCreateAcc) {
+    		membersList.addUser(newUser);
     	}
     	
     	
