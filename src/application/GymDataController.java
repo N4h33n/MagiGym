@@ -1,7 +1,12 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableSet;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -20,15 +25,21 @@ public class GymDataController {
     @FXML
     private TextField passwordTextField;
 
-    @FXML
-    private ChoiceBox<?> selectUserChoiceBox;
+    ObservableList<String> listNames = FXCollections.emptyObservableList();
     
-    private UsersData membersList = new UsersData(new ArrayList<User>());
+    @FXML
+    private ChoiceBox<String> selectUserChoiceBox = new ChoiceBox<String>(FXCollections.observableArrayList(listNames));
+    
+    private UsersData members = new UsersData(new ArrayList<User>());
 
     
-
-    @FXML
-
+   Map<String, User> memberMap = new HashMap<>();
+   
+   void createUserChoiceBox(ChoiceBox<String> userChoiceBox) {
+	   selectUserChoiceBox.setItems(listNames);
+   }
+    
+   @FXML
     void getLogInScene(ActionEvent event) {
     	Scene mainScene = applicationStage.getScene();
     	VBox logInContainer = new VBox();
@@ -141,8 +152,9 @@ public class GymDataController {
     }
     
     void createAccount(Scene mainScene, TextField firstNameTextField, TextField lastNameTextField , TextField passwordTextField , TextField ageTextField , ChoiceBox<String> genderChoiceBox , TextField heightTextField, TextField weightTextField) {
-    	boolean errorInCreateAcc = false;
-    	User newUser = new User(firstNameTextField.getText(), lastNameTextField.getText(), passwordTextField.getText(), ageTextField.getText() , genderChoiceBox.getValue(), heightTextField.getText(), weightTextField.getText() );
+    	boolean errorInCreateAcc = false; 
+    	memberMap.put(firstNameTextField.getText() + " " + lastNameTextField.getText(), new User(firstNameTextField.getText(), lastNameTextField.getText(), passwordTextField.getText(), ageTextField.getText() , genderChoiceBox.getValue(), heightTextField.getText(), weightTextField.getText()));
+    	User newUser = memberMap.get(firstNameTextField.getText() + " " + lastNameTextField.getText());
     	if (newUser.getFirstName() == null) {
     		errorInCreateAcc = true;
     	}
@@ -166,7 +178,11 @@ public class GymDataController {
     	}
     	
     	if(!errorInCreateAcc) {
-    		membersList.addUser(newUser);
+    		members.addUser(newUser);
+    		listNames.add(firstNameTextField.getText() + " " + lastNameTextField.getText());
+    	}
+    	else {
+    		memberMap.remove(firstNameTextField.getText() + " " + lastNameTextField.getText());
     	}
     	
     	
