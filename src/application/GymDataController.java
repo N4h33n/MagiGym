@@ -36,6 +36,9 @@ public class GymDataController {
     	Label userAgeLabel = new Label();
     	userAgeLabel.setText("Age: ");
     	
+    	Label userHeight = new Label();
+    	userHeight.setText("Your current height is: ");
+    	
     	Label userWeight = new Label();
     	userWeight.setText("Your current weight is: ");
     	
@@ -98,13 +101,21 @@ public class GymDataController {
     	genderChoiceBox.getItems().add("Female");
     	genderContainer.getChildren().addAll(genderLabel, genderChoiceBox);
     	
+    	HBox heightContainer = new HBox();
+    	Label heightLabel = new Label();
+    	heightLabel.setText("Enter your height in meters");
+    	TextField heightTextField = new TextField();
+    	Label heightUnitLabel = new Label();
+    	heightUnitLabel.setText("kg");
+    	heightContainer.getChildren().addAll(heightLabel, heightTextField, heightUnitLabel);
+    	
     	HBox weightContainer = new HBox();
     	Label weightLabel = new Label();
     	weightLabel.setText("Enter your weight in kg");
     	TextField weightTextField = new TextField();
-    	Label unitLabel = new Label();
-    	unitLabel.setText("kg");
-    	weightContainer.getChildren().addAll(weightLabel, weightTextField, unitLabel);
+    	Label weightUnitLabel = new Label();
+    	weightUnitLabel.setText("kg");
+    	weightContainer.getChildren().addAll(weightLabel, weightTextField, weightUnitLabel);
     	
     	HBox createAccButtonsContainer = new HBox();
     	Button createAccButton = new Button();
@@ -117,7 +128,7 @@ public class GymDataController {
     	Label createAccErrorLabel = new Label();
     	createAccErrorLabel.setText("");
     	
-    	createAccContainer.getChildren().addAll(firstNameContainer, lastNameContainer,passwordContainer, ageContainer, genderContainer, weightContainer, createAccButtonsContainer, createAccErrorLabel);
+    	createAccContainer.getChildren().addAll(firstNameContainer, lastNameContainer,passwordContainer, ageContainer, genderContainer, heightContainer, weightContainer, createAccButtonsContainer, createAccErrorLabel);
     	
     	Scene createAccountScene = new Scene(createAccContainer);
     	applicationStage.setScene(createAccountScene);
@@ -125,9 +136,9 @@ public class GymDataController {
 
     }
     
-    void createAccount(Scene mainScene, TextField firstNameTextField, TextField lastNameTextField , TextField passwordTextField , TextField ageTextField , ChoiceBox<String> genderChoiceBox , TextField weightTextField) {
+    void createAccount(Scene mainScene, TextField firstNameTextField, TextField lastNameTextField , TextField passwordTextField , TextField ageTextField , ChoiceBox<String> genderChoiceBox , TextField heightTextField, TextField weightTextField) {
     	boolean errorInCreateAcc = false;
-    	User newUser = new User(firstNameTextField.getText(), lastNameTextField.getText(), passwordTextField.getText(), ageTextField.getText() , genderChoiceBox.getValue(),weightTextField.getText() );
+    	User newUser = new User(firstNameTextField.getText(), lastNameTextField.getText(), passwordTextField.getText(), ageTextField.getText() , genderChoiceBox.getValue(), heightTextField.getText(), weightTextField.getText() );
     	if (newUser.getFirstName() == null) {
     		errorInCreateAcc = true;
     	}
@@ -141,6 +152,9 @@ public class GymDataController {
     		errorInCreateAcc = true;
     	}
     	if (newUser.getGender() == null) {
+    		errorInCreateAcc = true;
+    	}
+    	if (newUser.getHeight() == -1) {
     		errorInCreateAcc = true;
     	}
     	if (newUser.getCurrentWeight() == -1) {
