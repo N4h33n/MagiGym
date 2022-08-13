@@ -16,7 +16,7 @@ public class GymDataController {
 	Stage applicationStage;
 
     @FXML
-    private TextField passwordTextFiled;
+    private TextField passwordTextField;
 
     @FXML
     private ChoiceBox<?> selectUserChoiceBox;
