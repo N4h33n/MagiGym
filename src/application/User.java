@@ -8,6 +8,7 @@ public class User {
 	private double height = -1;
 	private double currentWeight = -1;
 	private String password = null;
+	private double bmi;
 	
 	public User(String memberFirst, String memberLast, String memberAge, String memberGender, String height, String memberCurrentWeight, String memberPassword) {
 		setFirstName(memberFirst);
@@ -146,6 +147,29 @@ void setHeight(String height) {
 	catch(NumberFormatException e) {
 		
 	}
+}
+
+public double getBmi() {
+	return bmi;
+}
+
+public int setBmi(double bmi) {
+	this.bmi = getCurrentWeight()/Math.pow(getHeight(), 2);
+	int x = 0;
+	if (bmi < 18.5) {
+		x = 1; // if 1 then underweight 
+	}
+	if ((bmi >=  18.5)&&(bmi<=24.9)) {
+		x = 2; // if 2 then normal
+	}
+	if ((bmi >=  25.0)&&(bmi<=29.9)) {
+		x = 3; // if 3 then overweight
+	}
+	if (bmi >= 30.0) {
+		x = 4; // if 4 then obese
+	}
+	return x;
+	
 }	
 }
 

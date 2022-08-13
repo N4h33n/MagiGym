@@ -16,4 +16,5 @@ public class UsersData {
 	public void addUser(User newUser) {
 		listOfUsers.add(newUser);
 	}
+	
 }
