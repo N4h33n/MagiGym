@@ -72,7 +72,7 @@
       </Button>
       <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #2E4057;">
          <children>
-            <Label alignment="CENTER" prefHeight="14.0" prefWidth="429.0" text="Label" textFill="WHITE">
+            <Label fx:id="logInErrorLabel" alignment="CENTER" prefHeight="14.0" prefWidth="429.0" textFill="WHITE">
                <font>
                   <Font name="SansSerif Regular" size="15.75" />
                </font>
