@@ -57,8 +57,10 @@ public class GymDataController {
     	Label inputWeightLabel = new Label();
     	inputWeightLabel.setText("Input your current weight: ");
     	TextField inputWeightTextField = new TextField();
+    	Label errorWeightLabel = new Label();
+    	errorWeightLabel.setText("");
     	
-    	weightContainer.getChildren().addAll(inputWeightLabel, inputWeightTextField);
+    	weightContainer.getChildren().addAll(inputWeightLabel, inputWeightTextField, errorWeightLabel);
     	Button enterWeight = new Button("Enter Weight");
     	
     	
