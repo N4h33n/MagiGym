@@ -10,7 +10,7 @@ public class User {
 	private String password = null;
 	private double bmi;
 	
-	public User(String memberFirst, String memberLast, String memberAge, String memberGender, String height, String memberCurrentWeight, String memberPassword) {
+	public User(String memberFirst, String memberLast, String memberPassword, String memberAge, String memberGender, String height, String memberCurrentWeight) {
 		setFirstName(memberFirst);
 		setLastName(memberLast);
 		setAge(memberAge);
