@@ -1,7 +1,12 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableSet;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -20,35 +25,36 @@ public class GymDataController {
     @FXML
     private TextField passwordTextField;
 
-    @FXML
-    private ChoiceBox<?> selectUserChoiceBox;
+    ArrayList<String> listNames = new ArrayList<String>();
     
-    private UsersData membersList = new UsersData(new ArrayList<User>());
+    @FXML
+    private ChoiceBox<String> selectUserChoiceBox;
+    
+    private UsersData members = new UsersData(new ArrayList<User>());
 
     
-
-    @FXML
-
-    void getLogInScene(ActionEvent event) {
+   Map<String, User> memberMap = new HashMap<>();
+   
+    void getLogInScene(User currentUser) {
     	Scene mainScene = applicationStage.getScene();
     	VBox logInContainer = new VBox();
     	
     
     	Label userNameLabel = new Label();
-    	userNameLabel.setText("Name : ");
+    	userNameLabel.setText("Name : " + currentUser.getFirstName() + currentUser.getLastName());
     	
     	Label userAgeLabel = new Label();
-    	userAgeLabel.setText("Age: ");
+    	userAgeLabel.setText("Age: " + currentUser.getAge());
     	
     	Label userHeight = new Label();
-    	userHeight.setText("Your current height is: ");
+    	userHeight.setText("Your current height is: " + currentUser.getHeight() + "m");
     	
     	Label userWeight = new Label();
-    	userWeight.setText("Your current weight is: ");
+    	userWeight.setText("Your current weight is: " + currentUser.getCurrentWeight() + "kg");
     	
     	HBox weightContainer = new HBox();
     	Label inputWeightLabel = new Label();
-    	inputWeightLabel.setText("Input your current weight ");
+    	inputWeightLabel.setText("Input your current weight: ");
     	TextField inputWeightTextField = new TextField();
     	
     	weightContainer.getChildren().addAll(inputWeightLabel, inputWeightTextField);
@@ -65,6 +71,15 @@ public class GymDataController {
       Scene logInScene = new Scene(logInContainer);
     	applicationStage.setScene(logInScene);
     }
+   
+   @FXML
+   void logIn() {
+	   String selectedUser = selectUserChoiceBox.getValue();
+	   User currentUser = memberMap.get(selectedUser);
+	   if(passwordTextField.getText().equals(currentUser.getPassword())) {
+		   getLogInScene(currentUser);
+	   }
+   }
 
     
 
@@ -110,7 +125,7 @@ public class GymDataController {
     	heightLabel.setText("Enter your height in meters");
     	TextField heightTextField = new TextField();
     	Label heightUnitLabel = new Label();
-    	heightUnitLabel.setText("kg");
+    	heightUnitLabel.setText("m");
     	heightContainer.getChildren().addAll(heightLabel, heightTextField, heightUnitLabel);
     	
     	HBox weightContainer = new HBox();
@@ -136,13 +151,14 @@ public class GymDataController {
     	
     	Scene createAccountScene = new Scene(createAccContainer);
     	applicationStage.setScene(createAccountScene);
-    	
+    	createAccButton.setOnAction(createAccEvent -> createAccount(mainScene, firstNameTextField, lastNameTextField, passwordTextField, ageTextField, genderChoiceBox , heightTextField, weightTextField));
 
     }
     
     void createAccount(Scene mainScene, TextField firstNameTextField, TextField lastNameTextField , TextField passwordTextField , TextField ageTextField , ChoiceBox<String> genderChoiceBox , TextField heightTextField, TextField weightTextField) {
-    	boolean errorInCreateAcc = false;
-    	User newUser = new User(firstNameTextField.getText(), lastNameTextField.getText(), passwordTextField.getText(), ageTextField.getText() , genderChoiceBox.getValue(), heightTextField.getText(), weightTextField.getText() );
+    	boolean errorInCreateAcc = false; 
+    	memberMap.put(firstNameTextField.getText() + " " + lastNameTextField.getText(), new User(firstNameTextField.getText(), lastNameTextField.getText(), passwordTextField.getText(), ageTextField.getText() , genderChoiceBox.getValue(), heightTextField.getText(), weightTextField.getText()));
+    	User newUser = memberMap.get(firstNameTextField.getText() + " " + lastNameTextField.getText());
     	if (newUser.getFirstName() == null) {
     		errorInCreateAcc = true;
     	}
@@ -166,7 +182,14 @@ public class GymDataController {
     	}
     	
     	if(!errorInCreateAcc) {
-    		membersList.addUser(newUser);
+    		members.addUser(newUser);
+    		listNames.add(firstNameTextField.getText() + " " + lastNameTextField.getText());
+    		selectUserChoiceBox.getItems().addAll(FXCollections.observableArrayList(listNames));
+    		applicationStage.setScene(mainScene);
+    	}
+    	else {
+    		System.out.println("error" + newUser.getFirstName() + newUser.getLastName() + newUser.getAge() + newUser.getGender() + newUser.getHeight() + newUser.getCurrentWeight());
+    		memberMap.remove(firstNameTextField.getText() + " " + lastNameTextField.getText());
     	}
     	
     	
