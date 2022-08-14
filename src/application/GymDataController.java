@@ -200,7 +200,7 @@ public class GymDataController {
     	if(!errorInCreateAcc) {
     		members.addUser(newUser);
     		listNames.add(firstNameTextField.getText() + " " + lastNameTextField.getText());
-    		selectUserChoiceBox.getItems().addAll(FXCollections.observableArrayList(listNames));
+    		selectUserChoiceBox.setItems(FXCollections.observableArrayList(listNames));
     		applicationStage.setScene(mainScene);
     	}
     	else {
