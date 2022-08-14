@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -140,6 +141,13 @@ public class GymDataController {
     	weightUnitLabel.setText("kg");
     	weightContainer.getChildren().addAll(weightLabel, weightTextField, weightUnitLabel);
     	
+    	HBox userWorkoutContainer = new HBox();
+    	Label userWorkoutLabel = new Label();
+    	userWorkoutLabel.setText("Include a workout routine?");
+    	CheckBox userWorkoutCheckBox = new CheckBox("Yes");
+    	
+    	userWorkoutContainer.getChildren().addAll(userWorkoutLabel, userWorkoutCheckBox);
+    	
     	HBox createAccButtonsContainer = new HBox();
     	Button createAccButton = new Button();
     	createAccButton.setText("Create Account");
@@ -151,15 +159,17 @@ public class GymDataController {
     	Label createAccErrorLabel = new Label();
     	createAccErrorLabel.setText("");
     	
-    	createAccContainer.getChildren().addAll(firstNameContainer, lastNameContainer,passwordContainer, ageContainer, genderContainer, heightContainer, weightContainer, createAccButtonsContainer, createAccErrorLabel);
+    	createAccContainer.getChildren().addAll(firstNameContainer, lastNameContainer,passwordContainer, ageContainer, genderContainer, heightContainer, weightContainer, userWorkoutContainer, createAccButtonsContainer, createAccErrorLabel);
     	
     	Scene createAccountScene = new Scene(createAccContainer);
     	applicationStage.setScene(createAccountScene);
-    	createAccButton.setOnAction(createAccEvent -> createAccount(mainScene, firstNameTextField, lastNameTextField, passwordTextField, ageTextField, genderChoiceBox , heightTextField, weightTextField));
+    	createAccButton.setOnAction(createAccEvent -> createAccount(mainScene, firstNameTextField, lastNameTextField, passwordTextField, ageTextField, genderChoiceBox , heightTextField, weightTextField, userWorkoutCheckBox));
+    	
+    	
 
     }
     
-    void createAccount(Scene mainScene, TextField firstNameTextField, TextField lastNameTextField , TextField passwordTextField , TextField ageTextField , ChoiceBox<String> genderChoiceBox , TextField heightTextField, TextField weightTextField) {
+    void createAccount(Scene mainScene, TextField firstNameTextField, TextField lastNameTextField , TextField passwordTextField , TextField ageTextField , ChoiceBox<String> genderChoiceBox , TextField heightTextField, TextField weightTextField, CheckBox userWorkoutCheckBox) {
     	boolean errorInCreateAcc = false; 
     	memberMap.put(firstNameTextField.getText() + " " + lastNameTextField.getText(), new User(firstNameTextField.getText(), lastNameTextField.getText(), passwordTextField.getText(), ageTextField.getText() , genderChoiceBox.getValue(), heightTextField.getText(), weightTextField.getText()));
     	User newUser = memberMap.get(firstNameTextField.getText() + " " + lastNameTextField.getText());
