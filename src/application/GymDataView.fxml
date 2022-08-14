@@ -52,18 +52,39 @@
                   <Insets bottom="18.0" left="20.0" right="50.0" top="-100.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="passwordTextField">
+            <TextField fx:id="passwordTextField" prefHeight="26.0" prefWidth="149.0">
                <HBox.margin>
                   <Insets bottom="18.0" right="100.0" top="-100.0" />
                </HBox.margin>
+               <opaqueInsets>
+                  <Insets bottom="50.0" />
+               </opaqueInsets>
             </TextField>
          </children>
       </HBox>
-      <Button mnemonicParsing="false" onAction="#logIn" prefHeight="25.0" prefWidth="66.0" text="Log In" textFill="#354251">
+      <Button mnemonicParsing="false" onAction="#logIn" prefHeight="48.0" prefWidth="66.0" text="Log In" textFill="#354251">
          <VBox.margin>
             <Insets bottom="50.0" left="180.0" right="30.0" top="-100.0" />
          </VBox.margin>
+         <opaqueInsets>
+            <Insets top="60.0" />
+         </opaqueInsets>
       </Button>
+      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #2E4057;">
+         <children>
+            <Label fx:id="logInErrorLabel" alignment="CENTER" prefHeight="14.0" prefWidth="429.0" textFill="WHITE">
+               <font>
+                  <Font name="SansSerif Regular" size="15.75" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #2E4057;">
          <children>
             <Label text="Don't Have An Account?" textFill="WHITE">
