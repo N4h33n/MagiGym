@@ -69,10 +69,13 @@ public class GymDataController {
     	enterWeight.setOnAction(enterWeightEvent -> weightUpdateLabel.setText(currentUser.updateWeight(inputWeightTextField.getText())));
     	
     	
+    	Label bmiLabel = new Label();
+    	bmiLabel.setText("Your BMI is " + currentUser.setBmi());
+    	
     	
     	Button logOutButton = new Button("Log Out");
     	logOutButton.setOnAction(logOutEvent -> applicationStage.setScene(mainScene));
-    	logInContainer.getChildren().addAll(userNameLabel, userAgeLabel, userWeight, weightContainer, enterWeight, weightUpdateLabel, logOutButton);
+    	logInContainer.getChildren().addAll(userNameLabel, userAgeLabel, userWeight, weightContainer, enterWeight, weightUpdateLabel, bmiLabel, logOutButton);
     	
 
       Scene logInScene = new Scene(logInContainer);
