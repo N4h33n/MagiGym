@@ -7,6 +7,11 @@ public class Day  {
 	private String workoutType;
 	private double hours;
 	
+	public Day(String workoutType, String hours) {
+		setWorkoutType(workoutType);
+		setHours(hours);
+		
+	}
 	
 	
 	String getWorkoutType() {
@@ -22,8 +27,8 @@ public class Day  {
 		return hours;
 	}
 	
-	void setHours(double hours) {
-		this.hours = hours;
+	void setHours(String hours) {
+		this.hours = Double.parseDouble(hours);
 	}
 	
 
