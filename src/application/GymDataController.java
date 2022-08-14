@@ -173,7 +173,7 @@ public class GymDataController {
     
     void createAccount(Scene mainScene, TextField firstNameTextField, TextField lastNameTextField , TextField passwordTextField , TextField ageTextField , ChoiceBox<String> genderChoiceBox , TextField heightTextField, TextField weightTextField, CheckBox userWorkoutCheckBox) {
     	boolean errorInCreateAcc = false; 
-    	memberMap.put(firstNameTextField.getText() + " " + lastNameTextField.getText(), new User(firstNameTextField.getText(), lastNameTextField.getText(), passwordTextField.getText(), ageTextField.getText() , genderChoiceBox.getValue(), heightTextField.getText(), weightTextField.getText()));
+    	memberMap.put(firstNameTextField.getText() + " " + lastNameTextField.getText(), new User(firstNameTextField.getText(), lastNameTextField.getText(), passwordTextField.getText(), ageTextField.getText() , genderChoiceBox.getValue(), heightTextField.getText(), weightTextField.getText(), userWorkoutCheckBox.isSelected()));
     	User newUser = memberMap.get(firstNameTextField.getText() + " " + lastNameTextField.getText());
     	if (newUser.getFirstName() == null) {
     		errorInCreateAcc = true;
