@@ -6,10 +6,14 @@ public class Day  {
 
 	private String workoutType;
 	private double hours;
+	private String day;
 	
-	public Day(String workoutType, String hours) {
-		setWorkoutType(workoutType);
-		setHours(hours);
+	
+	public Day(String workoutName, String workoutHours, String workoutDay) {
+		setWorkoutType(workoutName);
+		setHours(workoutHours);
+		setDay(workoutDay);
+		
 		
 	}
 	
@@ -29,6 +33,16 @@ public class Day  {
 	
 	void setHours(String hours) {
 		this.hours = Double.parseDouble(hours);
+	}
+
+
+	public String getDay() {
+		return day;
+	}
+
+
+	public void setDay(String day) {
+		this.day = day;
 	}
 	
 
