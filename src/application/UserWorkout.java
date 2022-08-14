@@ -12,15 +12,15 @@ public class UserWorkout extends User {
 	
 	
 	
-	private ArrayList<Day> day;
+	private ArrayList<Day> days;
 	
 	ArrayList<Day> getDay() {
-		return day;
+		return days;
 		
 	
 	}
-	void setDay(ArrayList<Day> day) {
-		this.day = day;
+	void setDays(ArrayList<Day> days) {
+		this.days = days;
 	}
 	
 	

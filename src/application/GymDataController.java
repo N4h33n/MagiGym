@@ -68,10 +68,12 @@ public class GymDataController {
     	
     	enterWeight.setOnAction(enterWeightEvent -> weightUpdateLabel.setText(currentUser.updateWeight(inputWeightTextField.getText())));
     	
-    	logInContainer.getChildren().addAll(userNameLabel, userAgeLabel, userWeight, weightContainer, enterWeight, weightUpdateLabel);
     	
-
- 
+    	
+    	Button logOutButton = new Button("Log Out");
+    	logOutButton.setOnAction(logOutEvent -> applicationStage.setScene(mainScene));
+    	logInContainer.getChildren().addAll(userNameLabel, userAgeLabel, userWeight, weightContainer, enterWeight, weightUpdateLabel, logOutButton);
+    	
 
       Scene logInScene = new Scene(logInContainer);
     	applicationStage.setScene(logInScene);
@@ -171,49 +173,155 @@ public class GymDataController {
     
     void createAccount(Scene mainScene, TextField firstNameTextField, TextField lastNameTextField , TextField passwordTextField , TextField ageTextField , ChoiceBox<String> genderChoiceBox , TextField heightTextField, TextField weightTextField, CheckBox userWorkoutCheckBox) {
     	boolean errorInCreateAcc = false; 
-    	memberMap.put(firstNameTextField.getText() + " " + lastNameTextField.getText(), new User(firstNameTextField.getText(), lastNameTextField.getText(), passwordTextField.getText(), ageTextField.getText() , genderChoiceBox.getValue(), heightTextField.getText(), weightTextField.getText(), userWorkoutCheckBox.isSelected()));
-    	User newUser = memberMap.get(firstNameTextField.getText() + " " + lastNameTextField.getText());
-    	if (newUser.getFirstName() == null) {
-    		errorInCreateAcc = true;
-    	}
-    	if (newUser.getLastName() == null) {
-    		errorInCreateAcc = true;
-    	}
-    	if (newUser.getPassword() == null) {
-    		errorInCreateAcc = true;
-    	}
-    	if (newUser.getAge() == -1) {
-    		errorInCreateAcc = true;
-    	}
-    	if (newUser.getGender() == null) {
-    		errorInCreateAcc = true;
-    	}
-    	if (newUser.getHeight() == -1) {
-    		errorInCreateAcc = true;
-    	}
-    	if (newUser.getCurrentWeight() == -1) {
-    		errorInCreateAcc = true;
-    	}
-    	
-    	if(!errorInCreateAcc) {
-    		members.addUser(newUser);
-    		listNames.add(firstNameTextField.getText() + " " + lastNameTextField.getText());
-    		selectUserChoiceBox.getItems().addAll(FXCollections.observableArrayList(listNames));
-    		applicationStage.setScene(mainScene);
+    	if(!userWorkoutCheckBox.isSelected()) {
+    		memberMap.put(firstNameTextField.getText() + " " + lastNameTextField.getText(), new User(firstNameTextField.getText(), lastNameTextField.getText(), passwordTextField.getText(), ageTextField.getText() , genderChoiceBox.getValue(), heightTextField.getText(), weightTextField.getText(), userWorkoutCheckBox.isSelected()));
     	}
     	else {
-    		System.out.println("error" + newUser.getFirstName() + newUser.getLastName());
-    		System.out.println("error"+  newUser.getAge());
-    		System.out.println("error"+ newUser.getGender());
-    		System.out.println("error"+ newUser.getHeight());
-    		System.out.println("erorr" + newUser.getCurrentWeight());
-    		memberMap.remove(firstNameTextField.getText() + " " + lastNameTextField.getText());
+    		memberMap.put(firstNameTextField.getText() + " " + lastNameTextField.getText(), new UserWorkout(firstNameTextField.getText(), lastNameTextField.getText(), passwordTextField.getText(), ageTextField.getText() , genderChoiceBox.getValue(), heightTextField.getText(), weightTextField.getText(), userWorkoutCheckBox.isSelected()));
     	}
+    	if(!userWorkoutCheckBox.isSelected()) {
+    		User newUser = memberMap.get(firstNameTextField.getText() + " " + lastNameTextField.getText());
+    		if (newUser.getFirstName() == null) {
+        		errorInCreateAcc = true;
+        	}
+        	if (newUser.getLastName() == null) {
+        		errorInCreateAcc = true;
+        	}
+        	if (newUser.getPassword() == null) {
+        		errorInCreateAcc = true;
+        	}
+        	if (newUser.getAge() == -1) {
+        		errorInCreateAcc = true;
+        	}
+        	if (newUser.getGender() == null) {
+        		errorInCreateAcc = true;
+        	}
+        	if (newUser.getHeight() == -1) {
+        		errorInCreateAcc = true;
+        	}
+        	if (newUser.getCurrentWeight() == -1) {
+        		errorInCreateAcc = true;
+        	}
+        	
+        	if(!errorInCreateAcc) {
+        		members.addUser(newUser);
+        		listNames.add(firstNameTextField.getText() + " " + lastNameTextField.getText());
+        		selectUserChoiceBox.setItems(FXCollections.observableArrayList(listNames));
+        		applicationStage.setScene(mainScene);
+        	}
+        	else {
+        		
+        		memberMap.remove(firstNameTextField.getText() + " " + lastNameTextField.getText());
+        	}
+    	}
+    	else {
+    		UserWorkout newUser = (UserWorkout)memberMap.get(firstNameTextField.getText() + " " + lastNameTextField.getText());
+    		if (newUser.getFirstName() == null) {
+        		errorInCreateAcc = true;
+        	}
+        	if (newUser.getLastName() == null) {
+        		errorInCreateAcc = true;
+        	}
+        	if (newUser.getPassword() == null) {
+        		errorInCreateAcc = true;
+        	}
+        	if (newUser.getAge() == -1) {
+        		errorInCreateAcc = true;
+        	}
+        	if (newUser.getGender() == null) {
+        		errorInCreateAcc = true;
+        	}
+        	if (newUser.getHeight() == -1) {
+        		errorInCreateAcc = true;
+        	}
+        	if (newUser.getCurrentWeight() == -1) {
+        		errorInCreateAcc = true;
+        	}
+        	
+        	if(!errorInCreateAcc) {
+        		members.addUser(newUser);
+        		listNames.add(firstNameTextField.getText() + " " + lastNameTextField.getText());
+        		selectUserChoiceBox.setItems(FXCollections.observableArrayList(listNames));
+        		applicationStage.setScene(mainScene);
+        	}
+        	else {
+        		
+        		memberMap.remove(firstNameTextField.getText() + " " + lastNameTextField.getText());
+        	}
+    	}
+    	
     	
     	
     }
-
     
+
+    void setWorkoutScene(UserWorkout currentUser) {
+    	Scene mainScene = applicationStage.getScene();
+    	VBox workoutRoutineContainer = new VBox();
+    	ArrayList<String> workoutTypes = new ArrayList<String>();
+    	workoutTypes.add("Full Body");
+    	workoutTypes.add("Upper Body");
+    	workoutTypes.add("Lower Body");
+    	workoutTypes.add("Cardio");
+    	workoutTypes.add("Weight Lift");
+    	workoutTypes.add("Legs");
+    	workoutTypes.add("Light workout");
+    	workoutTypes.add("General Wrokout");
+    	workoutTypes.add("General Workout");
+    	
+    	HBox mondayContainer = new HBox();
+    	Label mondayLabel = new Label();
+    	mondayLabel.setText("Monday : ");
+    	ChoiceBox<String> mondayWorkoutChoiceBox = new ChoiceBox<String>();
+    	mondayWorkoutChoiceBox.setItems(FXCollections.observableArrayList(workoutTypes));
+    	mondayContainer.getChildren().addAll(mondayLabel, mondayWorkoutChoiceBox);
+    	
+    	HBox tuesdayContainer = new HBox();
+    	Label tuesdayLabel = new Label();
+    	tuesdayLabel.setText("Tuesday : ");
+    	ChoiceBox<String> tuesdayWorkoutChoiceBox = new ChoiceBox<String>();
+    	tuesdayWorkoutChoiceBox.setItems(FXCollections.observableArrayList(workoutTypes));
+    	tuesdayContainer.getChildren().addAll(tuesdayLabel, tuesdayWorkoutChoiceBox);
+    	
+    	HBox wednesdayContainer = new HBox();
+    	Label wednesdayLabel = new Label();
+    	wednesdayLabel.setText("Wednesday : ");
+    	ChoiceBox<String> wednesdayWorkoutChoiceBox = new ChoiceBox<String>();
+    	wednesdayWorkoutChoiceBox.setItems(FXCollections.observableArrayList(workoutTypes));
+    	wednesdayContainer.getChildren().addAll(wednesdayLabel, wednesdayWorkoutChoiceBox);
+    	
+    	HBox thursdayContainer = new HBox();
+    	Label thursdayLabel = new Label();
+    	thursdayLabel.setText("Thursday : ");
+    	ChoiceBox<String> thursdayWorkoutChoiceBox = new ChoiceBox<String>();
+    	thursdayWorkoutChoiceBox.setItems(FXCollections.observableArrayList(workoutTypes));
+    	thursdayContainer.getChildren().addAll(thursdayLabel, thursdayWorkoutChoiceBox);
+    	
+    	HBox fridayContainer = new HBox();
+    	Label fridayLabel = new Label();
+    	fridayLabel.setText("Friday : ");
+    	ChoiceBox<String> fridayWorkoutChoiceBox = new ChoiceBox<String>();
+    	fridayWorkoutChoiceBox.setItems(FXCollections.observableArrayList(workoutTypes));
+    	fridayContainer.getChildren().addAll(fridayLabel, fridayWorkoutChoiceBox);
+    	
+    	HBox saturdayContainer = new HBox();
+    	Label saturdayLabel = new Label();
+    	saturdayLabel.setText("Saturday : ");
+    	ChoiceBox<String> saturdayWorkoutChoiceBox = new ChoiceBox<String>();
+    	saturdayWorkoutChoiceBox.setItems(FXCollections.observableArrayList(workoutTypes));
+    	saturdayContainer.getChildren().addAll(saturdayLabel, saturdayWorkoutChoiceBox);
+    	
+    	HBox sundayContainer = new HBox();
+    	Label sundayLabel = new Label();
+    	sundayLabel.setText("Sunday : ");
+    	ChoiceBox<String> sundayWorkoutChoiceBox = new ChoiceBox<String>();
+    	sundayWorkoutChoiceBox.setItems(FXCollections.observableArrayList(workoutTypes));
+    	sundayContainer.getChildren().addAll(sundayLabel, sundayWorkoutChoiceBox);
+    	
+    	workoutRoutineContainer.getChildren().addAll(mondayContainer, tuesdayContainer, wednesdayContainer, thursdayContainer, fridayContainer, saturdayContainer, sundayContainer);
+    	
+    	
+    }
 
 }
 
