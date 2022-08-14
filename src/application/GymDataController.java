@@ -245,7 +245,7 @@ public class GymDataController {
         		members.addUser(newUser);
         		listNames.add(firstNameTextField.getText() + " " + lastNameTextField.getText());
         		selectUserChoiceBox.setItems(FXCollections.observableArrayList(listNames));
-        		applicationStage.setScene(mainScene);
+        		setWorkoutScene(newUser);
         	}
         	else {
         		
@@ -321,8 +321,17 @@ public class GymDataController {
     	sundayWorkoutChoiceBox.setItems(FXCollections.observableArrayList(workoutTypes));
     	sundayContainer.getChildren().addAll(sundayLabel, sundayWorkoutChoiceBox);
     	
+    	Button createRoutineButton = new Button();
+    	createRoutineButton.setText("Create Routine");
+    	
     	workoutRoutineContainer.getChildren().addAll(mondayContainer, tuesdayContainer, wednesdayContainer, thursdayContainer, fridayContainer, saturdayContainer, sundayContainer);
     	
+    	Scene createWorkoutScene = new Scene(workoutRoutineContainer);
+    	applicationStage.setScene(createWorkoutScene);
+    	createRoutineButton.setOnAction(createRoutineEvent -> createRoutine(mainScene, currentUser));
+    }
+    
+    void createRoutine(Scene mainScene, UserWorkout currentUser) {
     	
     }
 
