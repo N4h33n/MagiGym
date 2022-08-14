@@ -3,8 +3,6 @@ package application;
 public class Day  {
 
 	
-	
-	
 
 	private String workoutType;
 	private double hours;
