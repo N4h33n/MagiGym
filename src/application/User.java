@@ -155,20 +155,21 @@ public double getBmi() {
 	return bmi;
 }
 
-public int setBmi(double bmi) {
-	this.bmi = getCurrentWeight()/Math.pow(getHeight(), 2);
-	int x = 0;
+public String setBmi() {
+	bmi = getCurrentWeight()/Math.pow(getHeight(), 2);
+	String x = "";
 	if (bmi < 18.5) {
-		x = 1; // if 1 then underweight 
+		x =  String.format("Your BMI is %.2f . You are underweight", bmi);; // if 1 then underweight 
 	}
 	if ((bmi >=  18.5)&&(bmi<=24.9)) {
-		x = 2; // if 2 then normal
+		x =  String.format("Your BMI is %.2f . You are healthy", bmi);; // if 2 then normal
 	}
 	if ((bmi >=  25.0)&&(bmi<=29.9)) {
-		x = 3; // if 3 then overweight
+		x =  String.format("Your BMI is %.2f . You are overweight", bmi);; // if 3 then overweight
 	}
 	if (bmi >= 30.0) {
-		x = 4; // if 4 then obese
+		//x = "Your BMI is " + bmi + "You are Obese"; // if 4 then obese
+		x = String.format("Your BMI is %.2f . You are Obese", bmi);
 	}
 	return x;
 	
