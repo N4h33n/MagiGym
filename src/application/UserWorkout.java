@@ -3,14 +3,6 @@ package application;
 import java.util.ArrayList;
 
 public class UserWorkout extends User {
-
-	public UserWorkout(String memberFirst, String memberLast, String memberAge, String memberGender, String height,
-			String memberCurrentWeight, String memberPassword, boolean includeWorkout) {
-		super(memberFirst, memberLast, memberAge, memberGender, height, memberCurrentWeight, memberPassword, includeWorkout);
-		
-	}
-	
-	
 	
 	private ArrayList<Day> days;
 	private Day monday;
@@ -20,7 +12,15 @@ public class UserWorkout extends User {
 	private Day friday;
 	private Day saturday;
 	private Day sunday;
+
+	public UserWorkout(String memberFirst, String memberLast, String memberAge, String memberGender, String height,
+			String memberCurrentWeight, String memberPassword, boolean includeWorkout) {
+		super(memberFirst, memberLast, memberAge, memberGender, height, memberCurrentWeight, memberPassword, includeWorkout);
+		
+	}
 	
+	
+
 	ArrayList<Day> getDay() {
 		return days;
 		
