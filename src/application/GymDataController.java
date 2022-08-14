@@ -348,6 +348,15 @@ public class GymDataController {
     	workoutTypes.add("General Wrokout");
     	workoutTypes.add("General Workout");
     	
+    	HBox sundayContainer = new HBox();
+    	Label sundayLabel = new Label();
+    	sundayLabel.setText("Sunday : ");
+    	ChoiceBox<String> sundayWorkoutChoiceBox = new ChoiceBox<String>();
+    	sundayWorkoutChoiceBox.setItems(FXCollections.observableArrayList(workoutTypes));
+    	TextField sundayHours = new TextField();
+    	Label sundayHoursLabel = new Label("Hours");
+    	sundayContainer.getChildren().addAll(sundayLabel, sundayWorkoutChoiceBox, sundayHours, sundayHoursLabel);
+    	
     	HBox mondayContainer = new HBox();
     	Label mondayLabel = new Label();
     	mondayLabel.setText("Monday : ");
@@ -395,49 +404,42 @@ public class GymDataController {
     	
     	HBox saturdayContainer = new HBox();
     	Label saturdayLabel = new Label();
-    	saturdayLabel.setText("Saturday : ");
+    	sundayLabel.setText("Sunday : ");
     	ChoiceBox<String> saturdayWorkoutChoiceBox = new ChoiceBox<String>();
     	saturdayWorkoutChoiceBox.setItems(FXCollections.observableArrayList(workoutTypes));
     	TextField saturdayHours = new TextField();
     	Label saturdayHoursLabel = new Label("Hours");
-    	saturdayContainer.getChildren().addAll(saturdayLabel, saturdayWorkoutChoiceBox, saturdayHours, saturdayHoursLabel);
-    	
-    	HBox sundayContainer = new HBox();
-    	Label sundayLabel = new Label();
-    	sundayLabel.setText("Sunday : ");
-    	ChoiceBox<String> sundayWorkoutChoiceBox = new ChoiceBox<String>();
-    	sundayWorkoutChoiceBox.setItems(FXCollections.observableArrayList(workoutTypes));
-    	TextField sundayHours = new TextField();
-    	Label sundayHoursLabel = new Label("Hours");
-    	sundayContainer.getChildren().addAll(sundayLabel, sundayWorkoutChoiceBox, sundayHours, sundayHoursLabel);
+    	sundayContainer.getChildren().addAll(saturdayLabel, saturdayWorkoutChoiceBox, saturdayHours, saturdayHoursLabel);
     	
     	Button createRoutineButton = new Button();
     	createRoutineButton.setText("Create Routine");
     	
-    	workoutRoutineContainer.getChildren().addAll(mondayContainer, tuesdayContainer, wednesdayContainer, thursdayContainer, fridayContainer, saturdayContainer, sundayContainer, createRoutineButton);
+    	workoutRoutineContainer.getChildren().addAll(sundayContainer, mondayContainer, tuesdayContainer, wednesdayContainer, thursdayContainer, fridayContainer, saturdayContainer, createRoutineButton);
     	
     	Scene createWorkoutScene = new Scene(workoutRoutineContainer);
     	applicationStage.setScene(createWorkoutScene);
-    	createRoutineButton.setOnAction(createRoutineEvent -> createRoutine(mainScene, currentUser, mondayWorkoutChoiceBox, mondayHours, tuesdayWorkoutChoiceBox, tuesdayHours, wednesdayWorkoutChoiceBox, wednesdayHours, thursdayWorkoutChoiceBox, thursdayHours, fridayWorkoutChoiceBox, fridayHours, saturdayWorkoutChoiceBox, saturdayHours, sundayWorkoutChoiceBox, sundayHours));
+    	createRoutineButton.setOnAction(createRoutineEvent -> createRoutine(mainScene, currentUser, sundayWorkoutChoiceBox, sundayHours, mondayWorkoutChoiceBox, mondayHours, tuesdayWorkoutChoiceBox, tuesdayHours, wednesdayWorkoutChoiceBox, wednesdayHours, thursdayWorkoutChoiceBox, thursdayHours, fridayWorkoutChoiceBox, fridayHours, saturdayWorkoutChoiceBox, saturdayHours));
     }
     
-    void createRoutine(Scene mainScene, UserWorkout currentUser, ChoiceBox<String> mondayWorkoutChoiceBox, TextField mondayHours, ChoiceBox<String> tuesdayWorkoutChoiceBox, TextField tuesdayHours, ChoiceBox<String> wednesdayWorkoutChoiceBox, TextField wednesdayHours, ChoiceBox<String> thursdayWorkoutChoiceBox, TextField thursdayHours, ChoiceBox<String> fridayWorkoutChoiceBox, TextField fridayHours, ChoiceBox<String> saturdayWorkoutChoiceBox, TextField saturdayHours, ChoiceBox<String> sundayWorkoutChoiceBox, TextField sundayHours) {
+    void createRoutine(Scene mainScene, UserWorkout currentUser,ChoiceBox<String>  sundayWorkoutChoiceBox, TextField sundayHours, ChoiceBox<String>  mondayWorkoutChoiceBox, TextField mondayHours, ChoiceBox<String> tuesdayWorkoutChoiceBox, TextField tuesdayHours, ChoiceBox<String> wednesdayWorkoutChoiceBox, TextField wednesdayHours, ChoiceBox<String> thursdayWorkoutChoiceBox, TextField thursdayHours, ChoiceBox<String> fridayWorkoutChoiceBox, TextField fridayHours, ChoiceBox<String> saturdayWorkoutChoiceBox, TextField saturdayHours) {
+    	currentUser.setSunday(new Day(sundayWorkoutChoiceBox.getValue(), sundayHours.getText(), "Sunday"));
     	currentUser.setMonday(new Day(mondayWorkoutChoiceBox.getValue(), mondayHours.getText(), "Monday"));
     	currentUser.setTuesday(new Day(tuesdayWorkoutChoiceBox.getValue(), tuesdayHours.getText(), "Tuesday"));
     	currentUser.setWednesday(new Day(wednesdayWorkoutChoiceBox.getValue(), wednesdayHours.getText(), "Wednesday"));
     	currentUser.setThursday(new Day(thursdayWorkoutChoiceBox.getValue(), thursdayHours.getText(), "Thursday"));
     	currentUser.setFriday(new Day(fridayWorkoutChoiceBox.getValue(), fridayHours.getText(), "Friday"));
     	currentUser.setSaturday(new Day(saturdayWorkoutChoiceBox.getValue(), saturdayHours.getText(), "Saturday"));
-    	currentUser.setSunday(new Day(sundayWorkoutChoiceBox.getValue(), sundayHours.getText(), "Sunday"));
+    	
     	
     	ArrayList<Day> dayList = new ArrayList<Day>();
+    	dayList.add(currentUser.getSunday());
     	dayList.add(currentUser.getMonday());
     	dayList.add(currentUser.getTuesday());
     	dayList.add(currentUser.getWednesday());
     	dayList.add(currentUser.getThursday());
     	dayList.add(currentUser.getFriday());
     	dayList.add(currentUser.getSaturday());
-    	dayList.add(currentUser.getSunday());
+    	
     	
     	currentUser.setDays(dayList);
     	applicationStage.setScene(mainScene);
