@@ -5,7 +5,7 @@ public class Day  {
 	
 
 	private String workoutType;
-	private double hours;
+	private double hours = -1;
 	private String day;
 	
 	
