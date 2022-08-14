@@ -47,11 +47,11 @@ public class GymDataController {
     	Label userAgeLabel = new Label();
     	userAgeLabel.setText("Age: " + currentUser.getAge());
     	
-    	Label userHeight = new Label();
-    	userHeight.setText("Your current height is: " + currentUser.getHeight() + "m");
+    	Label userHeightLabel = new Label();
+    	userHeightLabel.setText("Your current height is: " + currentUser.getHeight() + "m");
     	
-    	Label userWeight = new Label();
-    	userWeight.setText("Your weight is: " + currentUser.getCurrentWeight() + "kg");
+    	Label userWeightLabel = new Label();
+    	userWeightLabel.setText("Your weight is: " + currentUser.getCurrentWeight() + "kg");
     	
     	HBox weightContainer = new HBox();
     	Label inputWeightLabel = new Label();
@@ -66,20 +66,27 @@ public class GymDataController {
     	Label weightUpdateLabel = new Label();
     	weightUpdateLabel.setText(" ");
     	
-    	enterWeight.setOnAction(enterWeightEvent -> weightUpdateLabel.setText(currentUser.updateWeight(inputWeightTextField.getText())));
-    	
-    	
     	Label bmiLabel = new Label();
-    	bmiLabel.setText("Your BMI is " + currentUser.setBmi());
+    	bmiLabel.setText(currentUser.setBmi());
+    	
+    	enterWeight.setOnAction(enterWeightEvent -> updateWeightScene(weightUpdateLabel, userWeightLabel, bmiLabel, currentUser, inputWeightTextField.getText()));
     	
     	
     	Button logOutButton = new Button("Log Out");
     	logOutButton.setOnAction(logOutEvent -> applicationStage.setScene(mainScene));
-    	logInContainer.getChildren().addAll(userNameLabel, userAgeLabel, userWeight, weightContainer, enterWeight, weightUpdateLabel, bmiLabel, logOutButton);
+    	logInContainer.getChildren().addAll(userNameLabel, userAgeLabel, userWeightLabel, bmiLabel, weightContainer, enterWeight, weightUpdateLabel, logOutButton);
     	
 
       Scene logInScene = new Scene(logInContainer);
     	applicationStage.setScene(logInScene);
+    }
+    
+    void updateWeightScene(Label weightUpdateLabel, Label userWeightLabel, Label bmiLabel, User currentUser, String updatedWeight) {
+    	weightUpdateLabel.setText(currentUser.updateWeight(updatedWeight));
+    	bmiLabel.setText(currentUser.setBmi());
+    	userWeightLabel.setText("Your weight is: " + currentUser.getCurrentWeight() + "kg");
+    	
+    	
     }
    
    @FXML
@@ -245,7 +252,7 @@ public class GymDataController {
         		members.addUser(newUser);
         		listNames.add(firstNameTextField.getText() + " " + lastNameTextField.getText());
         		selectUserChoiceBox.setItems(FXCollections.observableArrayList(listNames));
-        		applicationStage.setScene(mainScene);
+        		setWorkoutScene(newUser);
         	}
         	else {
         		
@@ -321,8 +328,17 @@ public class GymDataController {
     	sundayWorkoutChoiceBox.setItems(FXCollections.observableArrayList(workoutTypes));
     	sundayContainer.getChildren().addAll(sundayLabel, sundayWorkoutChoiceBox);
     	
+    	Button createRoutineButton = new Button();
+    	createRoutineButton.setText("Create Routine");
+    	
     	workoutRoutineContainer.getChildren().addAll(mondayContainer, tuesdayContainer, wednesdayContainer, thursdayContainer, fridayContainer, saturdayContainer, sundayContainer);
     	
+    	Scene createWorkoutScene = new Scene(workoutRoutineContainer);
+    	applicationStage.setScene(createWorkoutScene);
+    	createRoutineButton.setOnAction(createRoutineEvent -> createRoutine(mainScene, currentUser));
+    }
+    
+    void createRoutine(Scene mainScene, UserWorkout currentUser) {
     	
     }
 
