@@ -57,8 +57,10 @@ public class GymDataController {
     	Label inputWeightLabel = new Label();
     	inputWeightLabel.setText("Input your current weight: ");
     	TextField inputWeightTextField = new TextField();
+    	Label errorWeightLabel = new Label();
+    	errorWeightLabel.setText("");
     	
-    	weightContainer.getChildren().addAll(inputWeightLabel, inputWeightTextField);
+    	weightContainer.getChildren().addAll(inputWeightLabel, inputWeightTextField, errorWeightLabel);
     	Button enterWeight = new Button("Enter Weight");
     	
     	
@@ -109,24 +111,32 @@ public class GymDataController {
     	Label firstNameLabel = new Label();
     	firstNameLabel.setText("Enter your first name");
     	TextField firstNameTextField = new TextField();
+    	Label errorFirstName = new Label();
+    	errorFirstName.setText("");
     	firstNameContainer.getChildren().addAll(firstNameLabel, firstNameTextField);
     	
     	HBox lastNameContainer = new HBox();
     	Label lastNameLabel = new Label();
     	lastNameLabel.setText("Enter your last name");
     	TextField lastNameTextField = new TextField();
+    	Label errorLastName = new Label();
+    	errorLastName.setText("");
     	lastNameContainer.getChildren().addAll(lastNameLabel, lastNameTextField);
     	
     	HBox passwordContainer = new HBox();
     	Label passwordLabel = new Label();
     	passwordLabel.setText("Enter a 6 to 10 digit password");
     	TextField passwordTextField = new TextField();
+    	Label errorPassword = new Label();
+    	errorPassword.setText("");
     	passwordContainer.getChildren().addAll(passwordLabel, passwordTextField);
     	
     	HBox ageContainer = new HBox();
     	Label ageLabel = new Label();
     	ageLabel.setText("Enter your age");
     	TextField ageTextField = new TextField();
+    	Label errorAge = new Label();
+    	errorAge.setText("");
     	ageContainer.getChildren().addAll(ageLabel, ageTextField);
     	
     	HBox genderContainer = new HBox();
@@ -141,6 +151,8 @@ public class GymDataController {
     	Label heightLabel = new Label();
     	heightLabel.setText("Enter your height in meters");
     	TextField heightTextField = new TextField();
+    	Label errorHeight = new Label();
+    	errorHeight.setText("");
     	Label heightUnitLabel = new Label();
     	heightUnitLabel.setText("m");
     	heightContainer.getChildren().addAll(heightLabel, heightTextField, heightUnitLabel);
@@ -149,6 +161,8 @@ public class GymDataController {
     	Label weightLabel = new Label();
     	weightLabel.setText("Enter your weight in kg");
     	TextField weightTextField = new TextField();
+    	Label errorWeight = new Label();
+    	errorWeight.setText("");
     	Label weightUnitLabel = new Label();
     	weightUnitLabel.setText("kg");
     	weightContainer.getChildren().addAll(weightLabel, weightTextField, weightUnitLabel);
