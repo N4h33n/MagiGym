@@ -9,8 +9,9 @@ public class User {
 	private double currentWeight = -1;
 	private String password = null;
 	private double bmi;
+	private boolean includeWorkout;
 	
-	public User(String memberFirst, String memberLast, String memberPassword, String memberAge, String memberGender, String height, String memberCurrentWeight) {
+	public User(String memberFirst, String memberLast, String memberPassword, String memberAge, String memberGender, String height, String memberCurrentWeight, Boolean includeWorkout) {
 		setFirstName(memberFirst);
 		setLastName(memberLast);
 		setAge(memberAge);
@@ -18,6 +19,7 @@ public class User {
 		setHeight(height);
 		setCurrentWeight(memberCurrentWeight);
 		setPassword(memberPassword);
+		setIncludeWorkout(includeWorkout);
 		
 	}	
  
@@ -170,6 +172,15 @@ public int setBmi(double bmi) {
 	}
 	return x;
 	
+}
+
+boolean isIncludeWorkout() {
+	return includeWorkout;
+}
+
+void setIncludeWorkout(boolean includeWorkout) {
+	
+	this.includeWorkout = includeWorkout;
 }	
 }
 
