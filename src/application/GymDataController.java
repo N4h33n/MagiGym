@@ -50,7 +50,7 @@ public class GymDataController {
     	userHeight.setText("Your current height is: " + currentUser.getHeight() + "m");
     	
     	Label userWeight = new Label();
-    	userWeight.setText("Your current weight is: " + currentUser.getCurrentWeight() + "kg");
+    	userWeight.setText("Your weight is: " + currentUser.getCurrentWeight() + "kg");
     	
     	HBox weightContainer = new HBox();
     	Label inputWeightLabel = new Label();
@@ -60,8 +60,12 @@ public class GymDataController {
     	weightContainer.getChildren().addAll(inputWeightLabel, inputWeightTextField);
     	Button enterWeight = new Button("Enter Weight");
     	
+    	
+    	
     	Label weightUpdateLabel = new Label();
     	weightUpdateLabel.setText(" ");
+    	
+    	enterWeight.setOnAction(enterWeightEvent -> weightUpdateLabel.setText(currentUser.updateWeight(inputWeightTextField.getText())));
     	
     	logInContainer.getChildren().addAll(userNameLabel, userAgeLabel, userWeight, weightContainer, enterWeight, weightUpdateLabel);
     	
@@ -188,7 +192,11 @@ public class GymDataController {
     		applicationStage.setScene(mainScene);
     	}
     	else {
-    		System.out.println("error" + newUser.getFirstName() + newUser.getLastName() + newUser.getAge() + newUser.getGender() + newUser.getHeight() + newUser.getCurrentWeight());
+    		System.out.println("error" + newUser.getFirstName() + newUser.getLastName());
+    		System.out.println("error"+  newUser.getAge());
+    		System.out.println("error"+ newUser.getGender());
+    		System.out.println("error"+ newUser.getHeight());
+    		System.out.println("erorr" + newUser.getCurrentWeight());
     		memberMap.remove(firstNameTextField.getText() + " " + lastNameTextField.getText());
     	}
     	
