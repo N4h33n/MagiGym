@@ -344,6 +344,7 @@ public class GymDataController {
     	
     	Label errorGender = new Label();
     	errorGender.setText("");
+    	errorGender.setStyle("-fx-text-fill:white");
     	HBox.setMargin(errorGender, new Insets(10));
     	
     	genderContainer.getChildren().addAll(genderLabel, genderChoiceBox, errorGender);
@@ -380,6 +381,7 @@ public class GymDataController {
     	
     	Label errorWeight = new Label();
     	errorWeight.setText("");
+    	errorWeight.setStyle("-fx-text-fill:white");
     	HBox.setMargin(errorWeight, new Insets(10)); 
     	
     	Label weightUnitLabel = new Label();
