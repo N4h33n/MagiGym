@@ -3,7 +3,8 @@ package application;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
+import java.util.Date;
+import java.util.Calendar;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableSet;
@@ -16,8 +17,12 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 
@@ -40,7 +45,9 @@ public class GymDataController {
     void getLogInScene(User currentUser) {
     	Scene mainScene = applicationStage.getScene();
     	VBox logInContainer = new VBox();
-    	
+    	BackgroundFill background_fill = new BackgroundFill(Color.web("#2E4057"), CornerRadii.EMPTY, Insets.EMPTY);
+    	Background background = new Background(background_fill);
+    	logInContainer.setBackground(background);
     
     	Label userNameLabel = new Label();
     	userNameLabel.setText("Name : " + currentUser.getFirstName() + " " + currentUser.getLastName());
@@ -95,12 +102,16 @@ public class GymDataController {
     	
 
       Scene logInScene = new Scene(logInContainer);
+      
     	applicationStage.setScene(logInScene);
     }
     
     void getLogInWorkoutScene(UserWorkout currentUser) {
     	Scene mainScene = applicationStage.getScene();
     	VBox logInContainer = new VBox();
+    	BackgroundFill background_fill = new BackgroundFill(Color.web("#2E4057"), CornerRadii.EMPTY, Insets.EMPTY);
+    	Background background = new Background(background_fill);
+    	logInContainer.setBackground(background);
     	
     
     	Label userNameLabel = new Label();
@@ -118,6 +129,25 @@ public class GymDataController {
     	Label userWeightLabel = new Label();
     	userWeightLabel.setText("Your weight is: " + currentUser.getCurrentWeight() + "kg");
     	VBox.setMargin(userWeightLabel, new Insets(10));
+    	
+    	Label workoutLabel = new Label();
+    	Day currentDay;
+    	Calendar calendar = Calendar.getInstance();
+    	calendar.setTime(new Date());
+    	int dayToday = calendar.get(Calendar.DAY_OF_WEEK);
+    	
+    	
+    	for (int i = 0; i < currentUser.getDays().size(); i++) {
+    		if (i+1 == dayToday) {
+    			if (currentUser.getDays().get(i).getWorkoutType() == "Rest") {
+    				workoutLabel.setText("You are not set to workout today.");
+    			}
+    			else {
+    				workoutLabel.setText("You are set to do " + currentUser.getDays().get(i).getWorkoutType() + " for " + currentUser.getDays().get(i).getHours() + " hours.");
+    			}
+    			
+    		}
+    	}
     	
     	HBox weightContainer = new HBox();
     	Label inputWeightLabel = new Label();
@@ -150,9 +180,11 @@ public class GymDataController {
     	
     	Button logOutButton = new Button("Log Out");
     	logOutButton.setOnAction(logOutEvent -> applicationStage.setScene(mainScene));
+
+    	logInContainer.getChildren().addAll(userNameLabel, userAgeLabel, userWeightLabel, bmiLabel, workoutLabel, weightContainer, enterWeight, weightUpdateLabel, logOutButton);
+
     	VBox.setMargin(logOutButton, new Insets(10));
     	
-    	logInContainer.getChildren().addAll(userNameLabel, userAgeLabel, userWeightLabel, bmiLabel, weightContainer, enterWeight, weightUpdateLabel, logOutButton);
     	
 
       Scene logInScene = new Scene(logInContainer);
@@ -195,6 +227,9 @@ public class GymDataController {
     void getCreateAccountScene(ActionEvent event) {
     	Scene mainScene = applicationStage.getScene();
     	VBox createAccContainer = new VBox();
+    	BackgroundFill background_fill = new BackgroundFill(Color.web("#2E4057"), CornerRadii.EMPTY, Insets.EMPTY);
+    	Background background = new Background(background_fill);
+    	createAccContainer.setBackground(background);
     	
     	HBox firstNameContainer = new HBox();
     	Label firstNameLabel = new Label();
@@ -422,6 +457,10 @@ public class GymDataController {
 
     void setWorkoutScene(Scene mainScene, UserWorkout currentUser) {
     	VBox workoutRoutineContainer = new VBox();
+    	BackgroundFill background_fill = new BackgroundFill(Color.web("#2E4057"), CornerRadii.EMPTY, Insets.EMPTY);
+    	Background background = new Background(background_fill);
+    	workoutRoutineContainer.setBackground(background);
+    	
     	ArrayList<String> workoutTypes = new ArrayList<String>();
     	workoutTypes.add("Full Body");
     	workoutTypes.add("Upper Body");
@@ -431,7 +470,7 @@ public class GymDataController {
     	workoutTypes.add("Legs");
     	workoutTypes.add("Light workout");
     	workoutTypes.add("General Wrokout");
-    	workoutTypes.add("General Workout");
+    	workoutTypes.add("Rest");
     	
     	HBox sundayContainer = new HBox();
     	Label sundayLabel = new Label();
@@ -550,7 +589,9 @@ public class GymDataController {
     	
     	 
     	Label saturdayHoursLabel = new Label("Hours");
+
     	HBox.setMargin(saturdayHoursLabel, new Insets(10));
+
     	saturdayContainer.getChildren().addAll(saturdayLabel, saturdayWorkoutChoiceBox, saturdayHours, saturdayHoursLabel);
     	
     	Button createRoutineButton = new Button();
