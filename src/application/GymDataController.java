@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.ObservableSet;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -42,40 +43,54 @@ public class GymDataController {
     	
     
     	Label userNameLabel = new Label();
-    	userNameLabel.setText("Name : " + currentUser.getFirstName() + currentUser.getLastName());
+    	userNameLabel.setText("Name : " + currentUser.getFirstName() + " " + currentUser.getLastName());
+    	VBox.setMargin(userNameLabel, new Insets(10));
     	
     	Label userAgeLabel = new Label();
     	userAgeLabel.setText("Age: " + currentUser.getAge());
+    	VBox.setMargin(userAgeLabel, new Insets(10));
     	
     	Label userHeightLabel = new Label();
     	userHeightLabel.setText("Your current height is: " + currentUser.getHeight() + "m");
+    	VBox.setMargin(userHeightLabel, new Insets(10));
     	
     	Label userWeightLabel = new Label();
     	userWeightLabel.setText("Your weight is: " + currentUser.getCurrentWeight() + "kg");
+    	VBox.setMargin(userWeightLabel, new Insets(10));
     	
     	HBox weightContainer = new HBox();
     	Label inputWeightLabel = new Label();
     	inputWeightLabel.setText("Input your current weight: ");
+    	HBox.setMargin(inputWeightLabel, new Insets(10));
+    	
     	TextField inputWeightTextField = new TextField();
+    	HBox.setMargin( inputWeightTextField, new Insets(10));
+    	
     	Label errorWeightLabel = new Label();
     	errorWeightLabel.setText("");
+    	HBox.setMargin(errorWeightLabel, new Insets(10));
     	
     	weightContainer.getChildren().addAll(inputWeightLabel, inputWeightTextField, errorWeightLabel);
     	Button enterWeight = new Button("Enter Weight");
-    	
+    	VBox.setMargin(enterWeight, new Insets(10));
     	
     	
     	Label weightUpdateLabel = new Label();
     	weightUpdateLabel.setText(" ");
+    	VBox.setMargin(weightUpdateLabel, new Insets(10));
     	
     	Label bmiLabel = new Label();
     	bmiLabel.setText(currentUser.setBmi());
+    	VBox.setMargin(bmiLabel, new Insets(10));
     	
     	enterWeight.setOnAction(enterWeightEvent -> updateWeightScene(weightUpdateLabel, userWeightLabel, bmiLabel, currentUser, inputWeightTextField.getText()));
     	
     	
     	Button logOutButton = new Button("Log Out");
+    	
     	logOutButton.setOnAction(logOutEvent -> applicationStage.setScene(mainScene));
+    	VBox.setMargin(logOutButton, new Insets(10));
+    	
     	logInContainer.getChildren().addAll(userNameLabel, userAgeLabel, userWeightLabel, bmiLabel, weightContainer, enterWeight, weightUpdateLabel, logOutButton);
     	
 
@@ -90,39 +105,53 @@ public class GymDataController {
     
     	Label userNameLabel = new Label();
     	userNameLabel.setText("Name : " + currentUser.getFirstName() + currentUser.getLastName());
+    	VBox.setMargin(userNameLabel, new Insets(10));
     	
     	Label userAgeLabel = new Label();
     	userAgeLabel.setText("Age: " + currentUser.getAge());
+    	VBox.setMargin(userAgeLabel, new Insets(10));
     	
     	Label userHeightLabel = new Label();
     	userHeightLabel.setText("Your current height is: " + currentUser.getHeight() + "m");
+    	VBox.setMargin(userHeightLabel, new Insets(10));
     	
     	Label userWeightLabel = new Label();
     	userWeightLabel.setText("Your weight is: " + currentUser.getCurrentWeight() + "kg");
+    	VBox.setMargin(userWeightLabel, new Insets(10));
     	
     	HBox weightContainer = new HBox();
     	Label inputWeightLabel = new Label();
     	inputWeightLabel.setText("Input your current weight: ");
+    	HBox.setMargin(inputWeightLabel, new Insets(10));
+    	
     	TextField inputWeightTextField = new TextField();
+    	HBox.setMargin( inputWeightTextField, new Insets(10));
+    	
     	Label errorWeightLabel = new Label();
     	errorWeightLabel.setText("");
+    	HBox.setMargin(errorWeightLabel, new Insets(10));
     	
     	weightContainer.getChildren().addAll(inputWeightLabel, inputWeightTextField, errorWeightLabel);
     	Button enterWeight = new Button("Enter Weight");
+    	VBox.setMargin(enterWeight, new Insets(10));
     	
     	
     	
     	Label weightUpdateLabel = new Label();
     	weightUpdateLabel.setText(" ");
+    	VBox.setMargin(weightUpdateLabel, new Insets(10));
     	
     	Label bmiLabel = new Label();
     	bmiLabel.setText(currentUser.setBmi());
+    	VBox.setMargin(bmiLabel, new Insets(10));
     	
     	enterWeight.setOnAction(enterWeightEvent -> updateWeightScene(weightUpdateLabel, userWeightLabel, bmiLabel, currentUser, inputWeightTextField.getText()));
     	
     	
     	Button logOutButton = new Button("Log Out");
     	logOutButton.setOnAction(logOutEvent -> applicationStage.setScene(mainScene));
+    	VBox.setMargin(logOutButton, new Insets(10));
+    	
     	logInContainer.getChildren().addAll(userNameLabel, userAgeLabel, userWeightLabel, bmiLabel, weightContainer, enterWeight, weightUpdateLabel, logOutButton);
     	
 
@@ -170,80 +199,132 @@ public class GymDataController {
     	HBox firstNameContainer = new HBox();
     	Label firstNameLabel = new Label();
     	firstNameLabel.setText("Enter your first name");
+    	HBox.setMargin(firstNameLabel, new Insets(10));
+    	
     	TextField firstNameTextField = new TextField();
+    	HBox.setMargin(firstNameTextField, new Insets(10));
+    	
     	Label errorFirstName = new Label();
     	errorFirstName.setText("");
+    	HBox.setMargin(errorFirstName, new Insets(10));
+    	
     	firstNameContainer.getChildren().addAll(firstNameLabel, firstNameTextField);
     	
     	HBox lastNameContainer = new HBox();
     	Label lastNameLabel = new Label();
     	lastNameLabel.setText("Enter your last name");
+    	HBox.setMargin(lastNameLabel, new Insets(10));
+    	
     	TextField lastNameTextField = new TextField();
+    	HBox.setMargin(lastNameTextField, new Insets(10));
+    	
     	Label errorLastName = new Label();
     	errorLastName.setText("");
+    	HBox.setMargin(errorLastName, new Insets(10));
+    	
     	lastNameContainer.getChildren().addAll(lastNameLabel, lastNameTextField);
     	
     	HBox passwordContainer = new HBox();
     	Label passwordLabel = new Label();
     	passwordLabel.setText("Enter a 6 to 10 digit password");
+    	HBox.setMargin(passwordLabel, new Insets(10));
+    	
     	TextField passwordTextField = new TextField();
+    	HBox.setMargin(passwordTextField, new Insets(10));
+    	
     	Label errorPassword = new Label();
     	errorPassword.setText("");
+    	HBox.setMargin(errorPassword, new Insets(10));
+    	
     	passwordContainer.getChildren().addAll(passwordLabel, passwordTextField);
     	
     	HBox ageContainer = new HBox();
     	Label ageLabel = new Label();
     	ageLabel.setText("Enter your age");
+    	HBox.setMargin(ageLabel, new Insets(10));
+    	
     	TextField ageTextField = new TextField();
+    	HBox.setMargin(ageTextField, new Insets(10));
+    	
     	Label errorAge = new Label();
     	errorAge.setText("");
+    	HBox.setMargin(errorAge, new Insets(10));
+    	
     	ageContainer.getChildren().addAll(ageLabel, ageTextField);
     	
     	HBox genderContainer = new HBox();
     	Label genderLabel = new Label();
-    	genderLabel.setText("Select your gender");
+        genderLabel.setText("Select your gender");
+        HBox.setMargin(genderLabel, new Insets(10));
+        
     	ChoiceBox<String> genderChoiceBox = new ChoiceBox<String>();
     	genderChoiceBox.getItems().add("Male");
     	genderChoiceBox.getItems().add("Female");
+    	HBox.setMargin(genderChoiceBox, new Insets(10));
+    	
     	genderContainer.getChildren().addAll(genderLabel, genderChoiceBox);
     	
     	HBox heightContainer = new HBox();
     	Label heightLabel = new Label();
     	heightLabel.setText("Enter your height in meters");
+    	HBox.setMargin(heightLabel, new Insets(10));
+    	
     	TextField heightTextField = new TextField();
+    	HBox.setMargin(heightTextField, new Insets(10));
+    	
     	Label errorHeight = new Label();
     	errorHeight.setText("");
+    	HBox.setMargin(errorHeight, new Insets(10));
+    	
     	Label heightUnitLabel = new Label();
     	heightUnitLabel.setText("m");
+    	HBox.setMargin(heightUnitLabel, new Insets(10));
+    	
     	heightContainer.getChildren().addAll(heightLabel, heightTextField, heightUnitLabel);
     	
     	HBox weightContainer = new HBox();
     	Label weightLabel = new Label();
     	weightLabel.setText("Enter your weight in kg");
+    	HBox.setMargin(weightLabel, new Insets(10)); 
+    	
     	TextField weightTextField = new TextField();
+    	HBox.setMargin(weightTextField, new Insets(10)); 
+    	
     	Label errorWeight = new Label();
     	errorWeight.setText("");
+    	HBox.setMargin(errorWeight, new Insets(10)); 
+    	
     	Label weightUnitLabel = new Label();
     	weightUnitLabel.setText("kg");
+    	HBox.setMargin( weightUnitLabel, new Insets(10));
+    	
     	weightContainer.getChildren().addAll(weightLabel, weightTextField, weightUnitLabel);
     	
     	HBox userWorkoutContainer = new HBox();
     	Label userWorkoutLabel = new Label();
     	userWorkoutLabel.setText("Include a workout routine?");
+    	HBox.setMargin( userWorkoutLabel, new Insets(10));
+    	
     	CheckBox userWorkoutCheckBox = new CheckBox("Yes");
+    	HBox.setMargin(userWorkoutCheckBox, new Insets(10));
     	
     	userWorkoutContainer.getChildren().addAll(userWorkoutLabel, userWorkoutCheckBox);
     	
     	HBox createAccButtonsContainer = new HBox();
     	Button createAccButton = new Button();
     	createAccButton.setText("Create Account");
+    	HBox.setMargin(createAccButton, new Insets(10));
+    	
     	Button cancelButton = new Button();
     	cancelButton.setText("Cancel");
     	cancelButton.setOnAction(cancelEvent -> applicationStage.setScene(mainScene));
+    	HBox.setMargin(cancelButton, new Insets(10));
+    	
     	createAccButtonsContainer.getChildren().addAll(createAccButton, cancelButton);
     	
     	Label createAccErrorLabel = new Label();
     	createAccErrorLabel.setText("");
+    	HBox.setMargin(createAccErrorLabel, new Insets(10));
     	
     	createAccContainer.getChildren().addAll(firstNameContainer, lastNameContainer,passwordContainer, ageContainer, genderContainer, heightContainer, weightContainer, userWorkoutContainer, createAccButtonsContainer, createAccErrorLabel);
     	
@@ -355,68 +436,127 @@ public class GymDataController {
     	HBox sundayContainer = new HBox();
     	Label sundayLabel = new Label();
     	sundayLabel.setText("Sunday : ");
+    	HBox.setMargin(sundayLabel, new Insets(10));
+    	
     	ChoiceBox<String> sundayWorkoutChoiceBox = new ChoiceBox<String>();
     	sundayWorkoutChoiceBox.setItems(FXCollections.observableArrayList(workoutTypes));
+    	HBox.setMargin(sundayWorkoutChoiceBox, new Insets(10));
+    	
     	TextField sundayHours = new TextField();
+    	HBox.setMargin(sundayHours, new Insets(10));
+    	
     	Label sundayHoursLabel = new Label("Hours");
+    	HBox.setMargin(sundayHoursLabel, new Insets(10));
+    	
     	sundayContainer.getChildren().addAll(sundayLabel, sundayWorkoutChoiceBox, sundayHours, sundayHoursLabel);
     	
     	HBox mondayContainer = new HBox();
     	Label mondayLabel = new Label();
     	mondayLabel.setText("Monday : ");
+    	HBox.setMargin(mondayLabel, new Insets(10));
+    	
     	ChoiceBox<String> mondayWorkoutChoiceBox = new ChoiceBox<String>();
     	mondayWorkoutChoiceBox.setItems(FXCollections.observableArrayList(workoutTypes));
+    	HBox.setMargin(mondayWorkoutChoiceBox, new Insets(10));
+    	
     	TextField mondayHours = new TextField();
+    	HBox.setMargin(mondayHours, new Insets(10));
+    	
     	Label mondayHoursLabel = new Label("Hours");
+    	HBox.setMargin(mondayHoursLabel, new Insets(10));
+    	
     	mondayContainer.getChildren().addAll(mondayLabel, mondayWorkoutChoiceBox, mondayHours, mondayHoursLabel);
     	
     	HBox tuesdayContainer = new HBox();
     	Label tuesdayLabel = new Label();
     	tuesdayLabel.setText("Tuesday : ");
+    	HBox.setMargin(tuesdayLabel, new Insets(10));
+    	
     	ChoiceBox<String> tuesdayWorkoutChoiceBox = new ChoiceBox<String>();
     	tuesdayWorkoutChoiceBox.setItems(FXCollections.observableArrayList(workoutTypes));
+    	HBox.setMargin(tuesdayWorkoutChoiceBox, new Insets(10));
+    	
     	TextField tuesdayHours = new TextField();
+    	HBox.setMargin(tuesdayHours, new Insets(10));
+    	
     	Label tuesdayHoursLabel = new Label("Hours");
+    	HBox.setMargin(tuesdayHoursLabel, new Insets(10));
+    	
     	tuesdayContainer.getChildren().addAll(tuesdayLabel, tuesdayWorkoutChoiceBox, tuesdayHours, tuesdayHoursLabel);
     	
     	HBox wednesdayContainer = new HBox();
+    	
     	Label wednesdayLabel = new Label();
     	wednesdayLabel.setText("Wednesday : ");
+    	HBox.setMargin(wednesdayLabel, new Insets(10));
+    	
     	ChoiceBox<String> wednesdayWorkoutChoiceBox = new ChoiceBox<String>();
     	wednesdayWorkoutChoiceBox.setItems(FXCollections.observableArrayList(workoutTypes));
+    	HBox.setMargin(wednesdayWorkoutChoiceBox, new Insets(10));
+    	
     	TextField wednesdayHours = new TextField();
+    	HBox.setMargin(wednesdayHours, new Insets(10));
+    	
     	Label wednesdayHoursLabel = new Label("Hours");
+    	HBox.setMargin(wednesdayHoursLabel, new Insets(10));
+    	
     	wednesdayContainer.getChildren().addAll(wednesdayLabel, wednesdayWorkoutChoiceBox, wednesdayHours, wednesdayHoursLabel);
     	
     	HBox thursdayContainer = new HBox();
     	Label thursdayLabel = new Label();
     	thursdayLabel.setText("Thursday : ");
+    	HBox.setMargin(thursdayLabel, new Insets(10));
+    	
     	ChoiceBox<String> thursdayWorkoutChoiceBox = new ChoiceBox<String>();
     	thursdayWorkoutChoiceBox.setItems(FXCollections.observableArrayList(workoutTypes));
+    	HBox.setMargin( thursdayWorkoutChoiceBox, new Insets(10));
+    	
     	TextField thursdayHours = new TextField();
+    	HBox.setMargin(thursdayHours, new Insets(10));
+    	
     	Label thursdayHoursLabel = new Label("Hours");
+    	HBox.setMargin( thursdayHoursLabel, new Insets(10));
+    	
     	thursdayContainer.getChildren().addAll(thursdayLabel, thursdayWorkoutChoiceBox, thursdayHours, thursdayHoursLabel);
     	
     	HBox fridayContainer = new HBox();
     	Label fridayLabel = new Label();
     	fridayLabel.setText("Friday : ");
+    	HBox.setMargin(fridayLabel, new Insets(10));
+    	
     	ChoiceBox<String> fridayWorkoutChoiceBox = new ChoiceBox<String>();
     	fridayWorkoutChoiceBox.setItems(FXCollections.observableArrayList(workoutTypes));
+    	HBox.setMargin(fridayWorkoutChoiceBox, new Insets(10));
+    	
     	TextField fridayHours = new TextField();
+    	HBox.setMargin(fridayHours, new Insets(10));
+    	
     	Label fridayHoursLabel = new Label("Hours");
+    	HBox.setMargin( fridayHoursLabel, new Insets(10));
+    	
     	fridayContainer.getChildren().addAll(fridayLabel, fridayWorkoutChoiceBox, fridayHours, fridayHoursLabel);
     	
     	HBox saturdayContainer = new HBox();
     	Label saturdayLabel = new Label();
     	saturdayLabel.setText("Saturday : ");
+    	HBox.setMargin(saturdayLabel, new Insets(10));
+    	
     	ChoiceBox<String> saturdayWorkoutChoiceBox = new ChoiceBox<String>();
-    	saturdayWorkoutChoiceBox.setItems(FXCollections.observableArrayList(workoutTypes));
+        saturdayWorkoutChoiceBox.setItems(FXCollections.observableArrayList(workoutTypes));
+        HBox.setMargin(saturdayWorkoutChoiceBox, new Insets(10));
+        
     	TextField saturdayHours = new TextField();
+    	HBox.setMargin(saturdayHours, new Insets(10));
+    	
+    	 
     	Label saturdayHoursLabel = new Label("Hours");
+    	HBox.setMargin(saturdayHoursLabel, new Insets(10));
     	saturdayContainer.getChildren().addAll(saturdayLabel, saturdayWorkoutChoiceBox, saturdayHours, saturdayHoursLabel);
     	
     	Button createRoutineButton = new Button();
     	createRoutineButton.setText("Create Routine");
+    	HBox.setMargin(createRoutineButton, new Insets(10));
+    	
     	
     	workoutRoutineContainer.getChildren().addAll(sundayContainer, mondayContainer, tuesdayContainer, wednesdayContainer, thursdayContainer, fridayContainer, saturdayContainer, createRoutineButton);
     	
