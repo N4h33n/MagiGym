@@ -442,34 +442,55 @@ public class GymDataController {
         		errorInCreateAcc = true;
         		errorFirstName.setText("Make sure name is alphabetic");
         	}
+    		else {
+    			errorFirstName.setText("");
+    		}
         	if (newUser.getLastName() == null) {
         		errorInCreateAcc = true;
         		errorLastName.setText("Make sure name is alphabetic");
         	}
+        	else {
+    			errorLastName.setText("");
+    		}
         	if (newUser.getPassword() == null) {
         		errorInCreateAcc = true;
         		errorPassword.setText("Password has to be between 6 and 10 characters");
         	}
+        	else {
+    			errorPassword.setText("");
+    		}
         	if (newUser.getAge() == -1) {
         		errorInCreateAcc = true;
         		errorAge.setText("Please enter a valid positive number");
         	}
-        	if (newUser.getAge() == -2) {
+        	else if (newUser.getAge() == -2) {
         		errorInCreateAcc = true;
         		errorAge.setText("You have to be 18 or older to create an account");
         	}
+        	else {
+    			errorAge.setText("");
+    		}
         	if (newUser.getGender() == null) {
         		errorInCreateAcc = true;
-        		errorAge.setText("Please select an option");
+        		errorGender.setText("Please select an option");
         	}
+        	else {
+    			errorGender.setText("");
+    		}
         	if (newUser.getHeight() == -1) {
         		errorInCreateAcc = true;
         		errorHeight.setText("Please enter a valid positive number");
         	}
+        	else {
+    			errorHeight.setText("");
+    		}
         	if (newUser.getCurrentWeight() == -1) {
         		errorInCreateAcc = true;
-        		errorHeight.setText("Please enter a valid positive number");
+        		errorWeight.setText("Please enter a valid positive number");
         	}
+        	else {
+    			errorWeight.setText("");
+    		}
         	
         	if(!errorInCreateAcc) {
         		members.addUser(newUser);
@@ -487,35 +508,56 @@ public class GymDataController {
     		if (newUser.getFirstName() == null) {
         		errorInCreateAcc = true;
         		errorFirstName.setText("Make sure name is alphabetic");
-        	}
+        		}
+    		else {
+    			errorFirstName.setText("");
+    		}
         	if (newUser.getLastName() == null) {
         		errorInCreateAcc = true;
         		errorLastName.setText("Make sure name is alphabetic");
         	}
+        	else {
+    			errorLastName.setText("");
+    		}
         	if (newUser.getPassword() == null) {
         		errorInCreateAcc = true;
         		errorPassword.setText("Password has to be between 6 and 10 characters");
         	}
+        	else {
+    			errorPassword.setText("");
+    		}
         	if (newUser.getAge() == -1) {
         		errorInCreateAcc = true;
         		errorAge.setText("Please enter a valid positive number");
         	}
-        	if (newUser.getAge() == -2) {
+        	else if (newUser.getAge() == -2) {
         		errorInCreateAcc = true;
         		errorAge.setText("You have to be 18 or older to create an account");
         	}
+        	else {
+    			errorAge.setText("");
+    		}
         	if (newUser.getGender() == null) {
         		errorInCreateAcc = true;
-        		errorAge.setText("Please select an option");
+        		errorGender.setText("Please select an option");
         	}
+        	else {
+    			errorAge.setText("");
+    		}
         	if (newUser.getHeight() == -1) {
         		errorInCreateAcc = true;
         		errorHeight.setText("Please enter a valid positive number");
         	}
+        	else {
+    			errorHeight.setText("");
+    		}
         	if (newUser.getCurrentWeight() == -1) {
         		errorInCreateAcc = true;
         		errorWeight.setText("Please enter a valid positive number");
         	}
+        	else {
+    			errorWeight.setText("");
+    		}
         	
         	if(!errorInCreateAcc) {
         		members.addUser(newUser);
