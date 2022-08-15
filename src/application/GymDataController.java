@@ -175,12 +175,16 @@ public class GymDataController {
 		   User currentUser = userSelected;
 		   if(passwordTextField.getText().equals(currentUser.getPassword())) {
 			   getLogInScene(currentUser);
+			   passwordTextField.clear();
+			   selectUserChoiceBox.valueProperty().set(null);
 		   }
 	   }
 	   else {
 		   UserWorkout currentUser = (UserWorkout) userSelected;
 		   if(passwordTextField.getText().equals(currentUser.getPassword())) {
 			   getLogInWorkoutScene(currentUser);
+			   passwordTextField.clear();
+			   selectUserChoiceBox.valueProperty().set(null);
 		   }
 	   }
    }
@@ -547,7 +551,6 @@ public class GymDataController {
     	 
     	Label saturdayHoursLabel = new Label("Hours");
     	HBox.setMargin(saturdayHoursLabel, new Insets(10));
-    	
     	saturdayContainer.getChildren().addAll(saturdayLabel, saturdayWorkoutChoiceBox, saturdayHours, saturdayHoursLabel);
     	
     	Button createRoutineButton = new Button();
