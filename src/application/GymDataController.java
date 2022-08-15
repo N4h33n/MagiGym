@@ -10,14 +10,19 @@ import javafx.collections.ObservableList;
 import javafx.collections.ObservableSet;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 
@@ -40,7 +45,9 @@ public class GymDataController {
     void getLogInScene(User currentUser) {
     	Scene mainScene = applicationStage.getScene();
     	VBox logInContainer = new VBox();
-    	
+    	BackgroundFill background_fill = new BackgroundFill(Color.web("#2E4057"), CornerRadii.EMPTY, Insets.EMPTY);
+    	Background background = new Background(background_fill);
+    	logInContainer.setBackground(background);
     
     	Label userNameLabel = new Label();
     	userNameLabel.setText("Name : " + currentUser.getFirstName() + currentUser.getLastName());
@@ -81,12 +88,16 @@ public class GymDataController {
     	
 
       Scene logInScene = new Scene(logInContainer);
+      
     	applicationStage.setScene(logInScene);
     }
     
     void getLogInWorkoutScene(UserWorkout currentUser) {
     	Scene mainScene = applicationStage.getScene();
     	VBox logInContainer = new VBox();
+    	BackgroundFill background_fill = new BackgroundFill(Color.web("#2E4057"), CornerRadii.EMPTY, Insets.EMPTY);
+    	Background background = new Background(background_fill);
+    	logInContainer.setBackground(background);
     	
     
     	Label userNameLabel = new Label();
@@ -182,6 +193,9 @@ public class GymDataController {
     void getCreateAccountScene(ActionEvent event) {
     	Scene mainScene = applicationStage.getScene();
     	VBox createAccContainer = new VBox();
+    	BackgroundFill background_fill = new BackgroundFill(Color.web("#2E4057"), CornerRadii.EMPTY, Insets.EMPTY);
+    	Background background = new Background(background_fill);
+    	createAccContainer.setBackground(background);
     	
     	HBox firstNameContainer = new HBox();
     	Label firstNameLabel = new Label();
@@ -357,6 +371,10 @@ public class GymDataController {
 
     void setWorkoutScene(Scene mainScene, UserWorkout currentUser) {
     	VBox workoutRoutineContainer = new VBox();
+    	BackgroundFill background_fill = new BackgroundFill(Color.web("#2E4057"), CornerRadii.EMPTY, Insets.EMPTY);
+    	Background background = new Background(background_fill);
+    	workoutRoutineContainer.setBackground(background);
+    	
     	ArrayList<String> workoutTypes = new ArrayList<String>();
     	workoutTypes.add("Full Body");
     	workoutTypes.add("Upper Body");
