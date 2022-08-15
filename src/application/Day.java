@@ -33,7 +33,13 @@ public class Day  {
 	
 	void setHours(String hours) {
 		try {
-			this.hours = Double.parseDouble(hours);
+			double hoursDouble = Double.parseDouble(hours);
+				if(hoursDouble >= 0 && hoursDouble <= 24) {
+					this.hours = hoursDouble;
+				}
+				else {
+					this.hours = -1;
+				}
 		}
 		catch(NumberFormatException e) {
 			
