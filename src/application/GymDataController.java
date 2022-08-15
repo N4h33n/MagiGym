@@ -52,23 +52,28 @@ public class GymDataController {
     
     	Label userNameLabel = new Label();
     	userNameLabel.setText("Name : " + currentUser.getFirstName() + " " + currentUser.getLastName());
+    	userNameLabel.setStyle("-fx-text-fill:white");
     	VBox.setMargin(userNameLabel, new Insets(10));
     	
     	Label userAgeLabel = new Label();
     	userAgeLabel.setText("Age: " + currentUser.getAge());
+    	userAgeLabel.setStyle("-fx-text-fill:white");
     	VBox.setMargin(userAgeLabel, new Insets(10));
     	
     	Label userHeightLabel = new Label();
     	userHeightLabel.setText("Your current height is: " + currentUser.getHeight() + "m");
+    	userHeightLabel.setStyle("-fx-text-fill:white");
     	VBox.setMargin(userHeightLabel, new Insets(10));
     	
     	Label userWeightLabel = new Label();
     	userWeightLabel.setText("Your weight is: " + currentUser.getCurrentWeight() + "kg");
+    	userWeightLabel.setStyle("-fx-text-fill:white");
     	VBox.setMargin(userWeightLabel, new Insets(10));
     	
     	HBox weightContainer = new HBox();
     	Label inputWeightLabel = new Label();
     	inputWeightLabel.setText("Input your current weight: ");
+    	inputWeightLabel.setStyle("-fx-text-fill:white");
     	HBox.setMargin(inputWeightLabel, new Insets(10));
     	
     	TextField inputWeightTextField = new TextField();
@@ -76,6 +81,7 @@ public class GymDataController {
     	
     	Label errorWeightLabel = new Label();
     	errorWeightLabel.setText("");
+    	errorWeightLabel.setStyle("-fx-text-fill:white");
     	HBox.setMargin(errorWeightLabel, new Insets(10));
     	
     	weightContainer.getChildren().addAll(inputWeightLabel, inputWeightTextField, errorWeightLabel);
@@ -85,10 +91,12 @@ public class GymDataController {
     	
     	Label weightUpdateLabel = new Label();
     	weightUpdateLabel.setText(" ");
+    	weightUpdateLabel.setStyle("-fx-text-fill:white");
     	VBox.setMargin(weightUpdateLabel, new Insets(10));
     	
     	Label bmiLabel = new Label();
     	bmiLabel.setText(currentUser.setBmi());
+    	bmiLabel.setStyle("-fx-text-fill:white");
     	VBox.setMargin(bmiLabel, new Insets(10));
     	
     	enterWeight.setOnAction(enterWeightEvent -> updateWeightScene(weightUpdateLabel, userWeightLabel, bmiLabel, currentUser, inputWeightTextField.getText()));
@@ -118,18 +126,22 @@ public class GymDataController {
     
     	Label userNameLabel = new Label();
     	userNameLabel.setText("Name : " + currentUser.getFirstName() + currentUser.getLastName());
+    	userNameLabel.setStyle("-fx-text-fill:white");
     	VBox.setMargin(userNameLabel, new Insets(10));
     	
     	Label userAgeLabel = new Label();
     	userAgeLabel.setText("Age: " + currentUser.getAge());
+    	userAgeLabel.setStyle("-fx-text-fill:white");
     	VBox.setMargin(userAgeLabel, new Insets(10));
     	
     	Label userHeightLabel = new Label();
     	userHeightLabel.setText("Your current height is: " + currentUser.getHeight() + "m");
+    	userHeightLabel.setStyle("-fx-text-fill:white");
     	VBox.setMargin(userHeightLabel, new Insets(10));
     	
     	Label userWeightLabel = new Label();
     	userWeightLabel.setText("Your weight is: " + currentUser.getCurrentWeight() + "kg");
+    	userWeightLabel.setStyle("-fx-text-fill:white");
     	VBox.setMargin(userWeightLabel, new Insets(10));
     	
     	Label workoutLabel = new Label();
@@ -142,9 +154,11 @@ public class GymDataController {
     		if (i+1 == dayToday) {
     			if (currentUser.getDays().get(i).getWorkoutType() == "Rest") {
     				workoutLabel.setText("You are not set to workout today.");
+    				workoutLabel.setStyle("-fx-text-fill:white");
     			}
     			else {
     				workoutLabel.setText("You are set to do " + currentUser.getDays().get(i).getWorkoutType() + " for " + currentUser.getDays().get(i).getHours() + " hours.");
+    				workoutLabel.setStyle("-fx-text-fill:white");
     			}
     			
     		}
@@ -153,12 +167,19 @@ public class GymDataController {
     	HBox weightContainer = new HBox();
     	Label inputWeightLabel = new Label();
     	inputWeightLabel.setText("Input your current weight: ");
+    	inputWeightLabel.setStyle("-fx-text-fill:white");
     	HBox.setMargin(inputWeightLabel, new Insets(10));
     	
     	TextField inputWeightTextField = new TextField();
     	HBox.setMargin( inputWeightTextField, new Insets(10));
     	
-    	weightContainer.getChildren().addAll(inputWeightLabel, inputWeightTextField);
+    	Label errorWeightLabel = new Label();
+    	errorWeightLabel.setText("");
+    	errorWeightLabel.setStyle("-fx-text-fill:white");
+    	HBox.setMargin(errorWeightLabel, new Insets(10));
+    	
+    	weightContainer.getChildren().addAll(inputWeightLabel, inputWeightTextField, errorWeightLabel);
+
     	Button enterWeight = new Button("Enter Weight");
     	VBox.setMargin(enterWeight, new Insets(10));
     	
@@ -166,10 +187,12 @@ public class GymDataController {
     	
     	Label weightUpdateLabel = new Label();
     	weightUpdateLabel.setText(" ");
+    	weightUpdateLabel.setStyle("-fx-text-fill:white");
     	VBox.setMargin(weightUpdateLabel, new Insets(10));
     	
     	Label bmiLabel = new Label();
     	bmiLabel.setText(currentUser.setBmi());
+    	bmiLabel.setStyle("-fx-text-fill:white");
     	VBox.setMargin(bmiLabel, new Insets(10));
     	
     	enterWeight.setOnAction(enterWeightEvent -> updateWeightScene(weightUpdateLabel, userWeightLabel, bmiLabel, currentUser, inputWeightTextField.getText()));
@@ -246,6 +269,7 @@ public class GymDataController {
     	HBox firstNameContainer = new HBox();
     	Label firstNameLabel = new Label();
     	firstNameLabel.setText("Enter your first name");
+    	firstNameLabel.setStyle("-fx-text-fill:white");
     	HBox.setMargin(firstNameLabel, new Insets(10));
     	
     	TextField firstNameTextField = new TextField();
@@ -253,6 +277,7 @@ public class GymDataController {
     	
     	Label errorFirstName = new Label();
     	errorFirstName.setText("");
+    	errorFirstName.setStyle("-fx-text-fill:white");
     	HBox.setMargin(errorFirstName, new Insets(10));
     	
     	firstNameContainer.getChildren().addAll(firstNameLabel, firstNameTextField, errorFirstName);
@@ -260,6 +285,7 @@ public class GymDataController {
     	HBox lastNameContainer = new HBox();
     	Label lastNameLabel = new Label();
     	lastNameLabel.setText("Enter your last name");
+    	lastNameLabel.setStyle("-fx-text-fill:white");
     	HBox.setMargin(lastNameLabel, new Insets(10));
     	
     	TextField lastNameTextField = new TextField();
@@ -267,6 +293,7 @@ public class GymDataController {
     	
     	Label errorLastName = new Label();
     	errorLastName.setText("");
+    	errorLastName.setStyle("-fx-text-fill:white");
     	HBox.setMargin(errorLastName, new Insets(10));
     	
     	lastNameContainer.getChildren().addAll(lastNameLabel, lastNameTextField, errorLastName);
@@ -274,6 +301,7 @@ public class GymDataController {
     	HBox passwordContainer = new HBox();
     	Label passwordLabel = new Label();
     	passwordLabel.setText("Enter a 6 to 10 digit password");
+    	passwordLabel.setStyle("-fx-text-fill:white");
     	HBox.setMargin(passwordLabel, new Insets(10));
     	
     	TextField passwordTextField = new TextField();
@@ -281,6 +309,8 @@ public class GymDataController {
     	
     	Label errorPassword = new Label();
     	errorPassword.setText("");
+    	errorPassword.setStyle("-fx-text-fill:white");
+    	
     	HBox.setMargin(errorPassword, new Insets(10));
     	
     	passwordContainer.getChildren().addAll(passwordLabel, passwordTextField, errorPassword);
@@ -288,6 +318,7 @@ public class GymDataController {
     	HBox ageContainer = new HBox();
     	Label ageLabel = new Label();
     	ageLabel.setText("Enter your age");
+    	ageLabel.setStyle("-fx-text-fill:white");
     	HBox.setMargin(ageLabel, new Insets(10));
     	
     	TextField ageTextField = new TextField();
@@ -295,6 +326,7 @@ public class GymDataController {
     	
     	Label errorAge = new Label();
     	errorAge.setText("");
+    	errorAge.setStyle("-fx-text-fill:white");
     	HBox.setMargin(errorAge, new Insets(10));
     	
     	ageContainer.getChildren().addAll(ageLabel, ageTextField, errorAge);
@@ -302,6 +334,7 @@ public class GymDataController {
     	HBox genderContainer = new HBox();
     	Label genderLabel = new Label();
         genderLabel.setText("Select your gender");
+        genderLabel.setStyle("-fx-text-fill:white");
         HBox.setMargin(genderLabel, new Insets(10));
         
     	ChoiceBox<String> genderChoiceBox = new ChoiceBox<String>();
@@ -318,6 +351,7 @@ public class GymDataController {
     	HBox heightContainer = new HBox();
     	Label heightLabel = new Label();
     	heightLabel.setText("Enter your height in meters");
+    	heightLabel.setStyle("-fx-text-fill:white");
     	HBox.setMargin(heightLabel, new Insets(10));
     	
     	TextField heightTextField = new TextField();
@@ -325,10 +359,12 @@ public class GymDataController {
     	
     	Label errorHeight = new Label();
     	errorHeight.setText("");
+    	errorHeight.setStyle("-fx-text-fill:white");
     	HBox.setMargin(errorHeight, new Insets(10));
     	
     	Label heightUnitLabel = new Label();
     	heightUnitLabel.setText("m");
+    	heightUnitLabel.setStyle("-fx-text-fill:white");
     	HBox.setMargin(heightUnitLabel, new Insets(10));
     	
     	heightContainer.getChildren().addAll(heightLabel, heightTextField, heightUnitLabel, errorHeight);
@@ -336,6 +372,7 @@ public class GymDataController {
     	HBox weightContainer = new HBox();
     	Label weightLabel = new Label();
     	weightLabel.setText("Enter your weight in kg");
+    	weightLabel.setStyle("-fx-text-fill:white");
     	HBox.setMargin(weightLabel, new Insets(10)); 
     	
     	TextField weightTextField = new TextField();
@@ -347,6 +384,7 @@ public class GymDataController {
     	
     	Label weightUnitLabel = new Label();
     	weightUnitLabel.setText("kg");
+    	weightUnitLabel.setStyle("-fx-text-fill:white");
     	HBox.setMargin( weightUnitLabel, new Insets(10));
     	
     	weightContainer.getChildren().addAll(weightLabel, weightTextField, weightUnitLabel, errorWeight);
@@ -354,9 +392,11 @@ public class GymDataController {
     	HBox userWorkoutContainer = new HBox();
     	Label userWorkoutLabel = new Label();
     	userWorkoutLabel.setText("Include a workout routine?");
+    	userWorkoutLabel.setStyle("-fx-text-fill:white");
     	HBox.setMargin( userWorkoutLabel, new Insets(10));
     	
     	CheckBox userWorkoutCheckBox = new CheckBox("Yes");
+    	userWorkoutCheckBox.setStyle("-fx-text-fill:white");
     	HBox.setMargin(userWorkoutCheckBox, new Insets(10));
     	
     	userWorkoutContainer.getChildren().addAll(userWorkoutLabel, userWorkoutCheckBox);
@@ -375,6 +415,7 @@ public class GymDataController {
     	
     	Label createAccErrorLabel = new Label();
     	createAccErrorLabel.setText("");
+    	createAccErrorLabel.setStyle("-fx-text-fill:white");
     	HBox.setMargin(createAccErrorLabel, new Insets(10));
     	
     	createAccContainer.getChildren().addAll(firstNameContainer, lastNameContainer,passwordContainer, ageContainer, genderContainer, heightContainer, weightContainer, userWorkoutContainer, createAccButtonsContainer, createAccErrorLabel);
@@ -514,6 +555,7 @@ public class GymDataController {
     	HBox sundayContainer = new HBox();
     	Label sundayLabel = new Label();
     	sundayLabel.setText("Sunday : ");
+    	sundayLabel.setStyle("-fx-text-fill:white");
     	HBox.setMargin(sundayLabel, new Insets(10));
     	
     	ChoiceBox<String> sundayWorkoutChoiceBox = new ChoiceBox<String>();
@@ -524,6 +566,7 @@ public class GymDataController {
     	HBox.setMargin(sundayHours, new Insets(10));
     	
     	Label sundayHoursLabel = new Label("Hours");
+    	sundayHoursLabel.setStyle("-fx-text-fill:white");
     	HBox.setMargin(sundayHoursLabel, new Insets(10));
     	
     	sundayContainer.getChildren().addAll(sundayLabel, sundayWorkoutChoiceBox, sundayHours, sundayHoursLabel);
@@ -531,6 +574,7 @@ public class GymDataController {
     	HBox mondayContainer = new HBox();
     	Label mondayLabel = new Label();
     	mondayLabel.setText("Monday : ");
+    	mondayLabel.setStyle("-fx-text-fill:white");
     	HBox.setMargin(mondayLabel, new Insets(10));
     	
     	ChoiceBox<String> mondayWorkoutChoiceBox = new ChoiceBox<String>();
@@ -541,6 +585,7 @@ public class GymDataController {
     	HBox.setMargin(mondayHours, new Insets(10));
     	
     	Label mondayHoursLabel = new Label("Hours");
+    	mondayHoursLabel .setStyle("-fx-text-fill:white");
     	HBox.setMargin(mondayHoursLabel, new Insets(10));
     	
     	mondayContainer.getChildren().addAll(mondayLabel, mondayWorkoutChoiceBox, mondayHours, mondayHoursLabel);
@@ -548,6 +593,7 @@ public class GymDataController {
     	HBox tuesdayContainer = new HBox();
     	Label tuesdayLabel = new Label();
     	tuesdayLabel.setText("Tuesday : ");
+    	tuesdayLabel.setStyle("-fx-text-fill:white");
     	HBox.setMargin(tuesdayLabel, new Insets(10));
     	
     	ChoiceBox<String> tuesdayWorkoutChoiceBox = new ChoiceBox<String>();
@@ -558,6 +604,7 @@ public class GymDataController {
     	HBox.setMargin(tuesdayHours, new Insets(10));
     	
     	Label tuesdayHoursLabel = new Label("Hours");
+    	tuesdayHoursLabel.setStyle("-fx-text-fill:white");
     	HBox.setMargin(tuesdayHoursLabel, new Insets(10));
     	
     	tuesdayContainer.getChildren().addAll(tuesdayLabel, tuesdayWorkoutChoiceBox, tuesdayHours, tuesdayHoursLabel);
@@ -566,6 +613,7 @@ public class GymDataController {
     	
     	Label wednesdayLabel = new Label();
     	wednesdayLabel.setText("Wednesday : ");
+    	wednesdayLabel.setStyle("-fx-text-fill:white");
     	HBox.setMargin(wednesdayLabel, new Insets(10));
     	
     	ChoiceBox<String> wednesdayWorkoutChoiceBox = new ChoiceBox<String>();
@@ -576,6 +624,7 @@ public class GymDataController {
     	HBox.setMargin(wednesdayHours, new Insets(10));
     	
     	Label wednesdayHoursLabel = new Label("Hours");
+    	wednesdayHoursLabel.setStyle("-fx-text-fill:white");
     	HBox.setMargin(wednesdayHoursLabel, new Insets(10));
     	
     	wednesdayContainer.getChildren().addAll(wednesdayLabel, wednesdayWorkoutChoiceBox, wednesdayHours, wednesdayHoursLabel);
@@ -583,6 +632,7 @@ public class GymDataController {
     	HBox thursdayContainer = new HBox();
     	Label thursdayLabel = new Label();
     	thursdayLabel.setText("Thursday : ");
+    	thursdayLabel.setStyle("-fx-text-fill:white");
     	HBox.setMargin(thursdayLabel, new Insets(10));
     	
     	ChoiceBox<String> thursdayWorkoutChoiceBox = new ChoiceBox<String>();
@@ -593,6 +643,7 @@ public class GymDataController {
     	HBox.setMargin(thursdayHours, new Insets(10));
     	
     	Label thursdayHoursLabel = new Label("Hours");
+    	thursdayHoursLabel.setStyle("-fx-text-fill:white");
     	HBox.setMargin( thursdayHoursLabel, new Insets(10));
     	
     	thursdayContainer.getChildren().addAll(thursdayLabel, thursdayWorkoutChoiceBox, thursdayHours, thursdayHoursLabel);
@@ -600,6 +651,7 @@ public class GymDataController {
     	HBox fridayContainer = new HBox();
     	Label fridayLabel = new Label();
     	fridayLabel.setText("Friday : ");
+    	fridayLabel.setStyle("-fx-text-fill:white");
     	HBox.setMargin(fridayLabel, new Insets(10));
     	
     	ChoiceBox<String> fridayWorkoutChoiceBox = new ChoiceBox<String>();
@@ -610,6 +662,7 @@ public class GymDataController {
     	HBox.setMargin(fridayHours, new Insets(10));
     	
     	Label fridayHoursLabel = new Label("Hours");
+    	fridayHoursLabel.setStyle("-fx-text-fill:white");
     	HBox.setMargin( fridayHoursLabel, new Insets(10));
     	
     	fridayContainer.getChildren().addAll(fridayLabel, fridayWorkoutChoiceBox, fridayHours, fridayHoursLabel);
@@ -617,6 +670,7 @@ public class GymDataController {
     	HBox saturdayContainer = new HBox();
     	Label saturdayLabel = new Label();
     	saturdayLabel.setText("Saturday : ");
+    	saturdayLabel.setStyle("-fx-text-fill:white");
     	HBox.setMargin(saturdayLabel, new Insets(10));
     	
     	ChoiceBox<String> saturdayWorkoutChoiceBox = new ChoiceBox<String>();
@@ -628,14 +682,14 @@ public class GymDataController {
     	
     	 
     	Label saturdayHoursLabel = new Label("Hours");
-
+    	saturdayHoursLabel.setStyle("-fx-text-fill:white");
     	HBox.setMargin(saturdayHoursLabel, new Insets(10));
 
     	saturdayContainer.getChildren().addAll(saturdayLabel, saturdayWorkoutChoiceBox, saturdayHours, saturdayHoursLabel);
     	
     	Button createRoutineButton = new Button();
     	createRoutineButton.setText("Create Routine");
-    	HBox.setMargin(createRoutineButton, new Insets(10));
+    	VBox.setMargin(createRoutineButton, new Insets(10));
     	
     	
     	workoutRoutineContainer.getChildren().addAll(sundayContainer, mondayContainer, tuesdayContainer, wednesdayContainer, thursdayContainer, fridayContainer, saturdayContainer, createRoutineButton);
