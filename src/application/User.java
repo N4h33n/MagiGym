@@ -28,8 +28,10 @@ public class User {
 		try {
 			Double updatedWeight = Double.parseDouble(weightEntered);
 		
-		
 		double weightChange = updatedWeight - getCurrentWeight();
+		if(updatedWeight < 0) {
+			return "Please enter a positive value";
+		}
 		setCurrentWeight(weightEntered);
 		if (weightChange > 0) {
 			result = ("Your current weight is " + getCurrentWeight() + " kg. You gainded " + weightChange + " kg"); 
@@ -43,7 +45,7 @@ public class User {
 		return result;
 		}
 		catch(NumberFormatException e) {
-			return null;
+			return "Please enter a valid number";
 		}
 	
 }
@@ -90,7 +92,7 @@ public void setAge(String age) {
 		if(ageAsInt >= 18) {
 			this.age = ageAsInt;
 		}
-		else {this.age = -1;}
+		else {this.age = -2;}
 	}
 	catch(NumberFormatException e) {
 		

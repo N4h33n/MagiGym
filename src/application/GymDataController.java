@@ -6,8 +6,6 @@ import java.util.Map;
 import java.util.Date;
 import java.util.Calendar;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.ObservableSet;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -24,7 +22,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.scene.Scene;
 
 public class GymDataController {
 	Stage applicationStage;
@@ -41,6 +38,9 @@ public class GymDataController {
 
     
    Map<String, User> memberMap = new HashMap<>();
+   
+   @FXML
+   private Label logInErrorLabel;
    
     void getLogInScene(User currentUser) {
     	Scene mainScene = applicationStage.getScene();
@@ -179,6 +179,7 @@ public class GymDataController {
     	HBox.setMargin(errorWeightLabel, new Insets(10));
     	
     	weightContainer.getChildren().addAll(inputWeightLabel, inputWeightTextField, errorWeightLabel);
+
     	Button enterWeight = new Button("Enter Weight");
     	VBox.setMargin(enterWeight, new Insets(10));
     	
@@ -211,6 +212,7 @@ public class GymDataController {
     }
     
     void updateWeightScene(Label weightUpdateLabel, Label userWeightLabel, Label bmiLabel, User currentUser, String updatedWeight) {
+    	
     	weightUpdateLabel.setText(currentUser.updateWeight(updatedWeight));
     	bmiLabel.setText(currentUser.setBmi());
     	userWeightLabel.setText("Your weight is: " + currentUser.getCurrentWeight() + "kg");
@@ -222,20 +224,33 @@ public class GymDataController {
    void logIn() {
 	   String selectedUser = selectUserChoiceBox.getValue();
 	   User userSelected = memberMap.get(selectedUser);
-	   if (!userSelected.isIncludeWorkout()) {
-		   User currentUser = userSelected;
-		   if(passwordTextField.getText().equals(currentUser.getPassword())) {
-			   getLogInScene(currentUser);
-			   passwordTextField.clear();
-			   selectUserChoiceBox.valueProperty().set(null);
-		   }
+	   if(selectedUser == null) {
+		   logInErrorLabel.setText("Please select a user");
 	   }
 	   else {
-		   UserWorkout currentUser = (UserWorkout) userSelected;
-		   if(passwordTextField.getText().equals(currentUser.getPassword())) {
-			   getLogInWorkoutScene(currentUser);
-			   passwordTextField.clear();
-			   selectUserChoiceBox.valueProperty().set(null);
+		   if (!userSelected.isIncludeWorkout()) {
+			   User currentUser = userSelected;
+			   if(passwordTextField.getText().equals(currentUser.getPassword())) {
+				   logInErrorLabel.setText("");
+				   getLogInScene(currentUser);
+				   passwordTextField.clear();
+				   selectUserChoiceBox.valueProperty().set(null);
+			   }
+			   else {
+				   logInErrorLabel.setText("Incorrect password for selected user");
+			   }
+		   }
+		   else {
+			   UserWorkout currentUser = (UserWorkout) userSelected;
+			   if(passwordTextField.getText().equals(currentUser.getPassword())) {
+				   logInErrorLabel.setText("");
+				   getLogInWorkoutScene(currentUser);
+				   passwordTextField.clear();
+				   selectUserChoiceBox.valueProperty().set(null);
+			   }
+			   else {
+				   logInErrorLabel.setText("Incorrect password for selected user");
+			   }
 		   }
 	   }
    }
@@ -265,7 +280,7 @@ public class GymDataController {
     	errorFirstName.setStyle("-fx-text-fill:white");
     	HBox.setMargin(errorFirstName, new Insets(10));
     	
-    	firstNameContainer.getChildren().addAll(firstNameLabel, firstNameTextField);
+    	firstNameContainer.getChildren().addAll(firstNameLabel, firstNameTextField, errorFirstName);
     	
     	HBox lastNameContainer = new HBox();
     	Label lastNameLabel = new Label();
@@ -281,7 +296,7 @@ public class GymDataController {
     	errorLastName.setStyle("-fx-text-fill:white");
     	HBox.setMargin(errorLastName, new Insets(10));
     	
-    	lastNameContainer.getChildren().addAll(lastNameLabel, lastNameTextField);
+    	lastNameContainer.getChildren().addAll(lastNameLabel, lastNameTextField, errorLastName);
     	
     	HBox passwordContainer = new HBox();
     	Label passwordLabel = new Label();
@@ -298,7 +313,7 @@ public class GymDataController {
     	
     	HBox.setMargin(errorPassword, new Insets(10));
     	
-    	passwordContainer.getChildren().addAll(passwordLabel, passwordTextField);
+    	passwordContainer.getChildren().addAll(passwordLabel, passwordTextField, errorPassword);
     	
     	HBox ageContainer = new HBox();
     	Label ageLabel = new Label();
@@ -314,7 +329,7 @@ public class GymDataController {
     	errorAge.setStyle("-fx-text-fill:white");
     	HBox.setMargin(errorAge, new Insets(10));
     	
-    	ageContainer.getChildren().addAll(ageLabel, ageTextField);
+    	ageContainer.getChildren().addAll(ageLabel, ageTextField, errorAge);
     	
     	HBox genderContainer = new HBox();
     	Label genderLabel = new Label();
@@ -327,7 +342,11 @@ public class GymDataController {
     	genderChoiceBox.getItems().add("Female");
     	HBox.setMargin(genderChoiceBox, new Insets(10));
     	
-    	genderContainer.getChildren().addAll(genderLabel, genderChoiceBox);
+    	Label errorGender = new Label();
+    	errorGender.setText("");
+    	HBox.setMargin(errorGender, new Insets(10));
+    	
+    	genderContainer.getChildren().addAll(genderLabel, genderChoiceBox, errorGender);
     	
     	HBox heightContainer = new HBox();
     	Label heightLabel = new Label();
@@ -348,7 +367,7 @@ public class GymDataController {
     	heightUnitLabel.setStyle("-fx-text-fill:white");
     	HBox.setMargin(heightUnitLabel, new Insets(10));
     	
-    	heightContainer.getChildren().addAll(heightLabel, heightTextField, heightUnitLabel);
+    	heightContainer.getChildren().addAll(heightLabel, heightTextField, heightUnitLabel, errorHeight);
     	
     	HBox weightContainer = new HBox();
     	Label weightLabel = new Label();
@@ -368,7 +387,7 @@ public class GymDataController {
     	weightUnitLabel.setStyle("-fx-text-fill:white");
     	HBox.setMargin( weightUnitLabel, new Insets(10));
     	
-    	weightContainer.getChildren().addAll(weightLabel, weightTextField, weightUnitLabel);
+    	weightContainer.getChildren().addAll(weightLabel, weightTextField, weightUnitLabel, errorWeight);
     	
     	HBox userWorkoutContainer = new HBox();
     	Label userWorkoutLabel = new Label();
@@ -403,13 +422,13 @@ public class GymDataController {
     	
     	Scene createAccountScene = new Scene(createAccContainer);
     	applicationStage.setScene(createAccountScene);
-    	createAccButton.setOnAction(createAccEvent -> createAccount(mainScene, firstNameTextField, lastNameTextField, passwordTextField, ageTextField, genderChoiceBox , heightTextField, weightTextField, userWorkoutCheckBox));
+    	createAccButton.setOnAction(createAccEvent -> createAccount(mainScene, firstNameTextField, errorFirstName, lastNameTextField, errorLastName, passwordTextField, errorPassword, ageTextField, errorAge, genderChoiceBox , errorGender, heightTextField, errorHeight, weightTextField, errorWeight, userWorkoutCheckBox));
     	
     	
 
     }
     
-    void createAccount(Scene mainScene, TextField firstNameTextField, TextField lastNameTextField , TextField passwordTextField , TextField ageTextField , ChoiceBox<String> genderChoiceBox , TextField heightTextField, TextField weightTextField, CheckBox userWorkoutCheckBox) {
+    void createAccount(Scene mainScene, TextField firstNameTextField, Label errorFirstName, TextField lastNameTextField , Label errorLastName, TextField passwordTextField , Label errorPassword,TextField ageTextField , Label errorAge, ChoiceBox<String> genderChoiceBox , Label errorGender, TextField heightTextField, Label errorHeight, TextField weightTextField, Label errorWeight,CheckBox userWorkoutCheckBox) {
     	boolean errorInCreateAcc = false; 
     	if(!userWorkoutCheckBox.isSelected()) {
     		memberMap.put(firstNameTextField.getText() + " " + lastNameTextField.getText(), new User(firstNameTextField.getText(), lastNameTextField.getText(), passwordTextField.getText(), ageTextField.getText() , genderChoiceBox.getValue(), heightTextField.getText(), weightTextField.getText(), userWorkoutCheckBox.isSelected()));
@@ -421,24 +440,35 @@ public class GymDataController {
     		User newUser = memberMap.get(firstNameTextField.getText() + " " + lastNameTextField.getText());
     		if (newUser.getFirstName() == null) {
         		errorInCreateAcc = true;
+        		errorFirstName.setText("Make sure name is alphabetic");
         	}
         	if (newUser.getLastName() == null) {
         		errorInCreateAcc = true;
+        		errorLastName.setText("Make sure name is alphabetic");
         	}
         	if (newUser.getPassword() == null) {
         		errorInCreateAcc = true;
+        		errorPassword.setText("Password has to be between 6 and 10 characters");
         	}
         	if (newUser.getAge() == -1) {
         		errorInCreateAcc = true;
+        		errorAge.setText("Please enter a valid positive number");
+        	}
+        	if (newUser.getAge() == -2) {
+        		errorInCreateAcc = true;
+        		errorAge.setText("You have to be 18 or older to create an account");
         	}
         	if (newUser.getGender() == null) {
         		errorInCreateAcc = true;
+        		errorAge.setText("Please select an option");
         	}
         	if (newUser.getHeight() == -1) {
         		errorInCreateAcc = true;
+        		errorHeight.setText("Please enter a valid positive number");
         	}
         	if (newUser.getCurrentWeight() == -1) {
         		errorInCreateAcc = true;
+        		errorHeight.setText("Please enter a valid positive number");
         	}
         	
         	if(!errorInCreateAcc) {
@@ -456,24 +486,35 @@ public class GymDataController {
     		UserWorkout newUser = (UserWorkout)memberMap.get(firstNameTextField.getText() + " " + lastNameTextField.getText());
     		if (newUser.getFirstName() == null) {
         		errorInCreateAcc = true;
+        		errorFirstName.setText("Make sure name is alphabetic");
         	}
         	if (newUser.getLastName() == null) {
         		errorInCreateAcc = true;
+        		errorLastName.setText("Make sure name is alphabetic");
         	}
         	if (newUser.getPassword() == null) {
         		errorInCreateAcc = true;
+        		errorPassword.setText("Password has to be between 6 and 10 characters");
         	}
         	if (newUser.getAge() == -1) {
         		errorInCreateAcc = true;
+        		errorAge.setText("Please enter a valid positive number");
+        	}
+        	if (newUser.getAge() == -2) {
+        		errorInCreateAcc = true;
+        		errorAge.setText("You have to be 18 or older to create an account");
         	}
         	if (newUser.getGender() == null) {
         		errorInCreateAcc = true;
+        		errorAge.setText("Please select an option");
         	}
         	if (newUser.getHeight() == -1) {
         		errorInCreateAcc = true;
+        		errorHeight.setText("Please enter a valid positive number");
         	}
         	if (newUser.getCurrentWeight() == -1) {
         		errorInCreateAcc = true;
+        		errorWeight.setText("Please enter a valid positive number");
         	}
         	
         	if(!errorInCreateAcc) {
