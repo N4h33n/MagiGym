@@ -733,15 +733,22 @@ public class GymDataController {
     	createRoutineButton.setText("Create Routine");
     	VBox.setMargin(createRoutineButton, new Insets(10));
     	
+    	Label errorRoutine = new Label();
+    	errorRoutine.setStyle("-fx-text-fill:white");
+    	errorRoutine.setText("");
+    	VBox.setMargin(errorRoutine, new Insets(10));
     	
-    	workoutRoutineContainer.getChildren().addAll(sundayContainer, mondayContainer, tuesdayContainer, wednesdayContainer, thursdayContainer, fridayContainer, saturdayContainer, createRoutineButton);
+    	workoutRoutineContainer.getChildren().addAll(sundayContainer, mondayContainer, tuesdayContainer, wednesdayContainer, thursdayContainer, fridayContainer, saturdayContainer, createRoutineButton, errorRoutine);
     	
     	Scene createWorkoutScene = new Scene(workoutRoutineContainer);
     	applicationStage.setScene(createWorkoutScene);
-    	createRoutineButton.setOnAction(createRoutineEvent -> createRoutine(mainScene, currentUser, sundayWorkoutChoiceBox, sundayHours, mondayWorkoutChoiceBox, mondayHours, tuesdayWorkoutChoiceBox, tuesdayHours, wednesdayWorkoutChoiceBox, wednesdayHours, thursdayWorkoutChoiceBox, thursdayHours, fridayWorkoutChoiceBox, fridayHours, saturdayWorkoutChoiceBox, saturdayHours));
+    	createRoutineButton.setOnAction(createRoutineEvent -> createRoutine(mainScene, currentUser, sundayWorkoutChoiceBox, sundayHours, mondayWorkoutChoiceBox, mondayHours, tuesdayWorkoutChoiceBox, tuesdayHours, wednesdayWorkoutChoiceBox, wednesdayHours, thursdayWorkoutChoiceBox, thursdayHours, fridayWorkoutChoiceBox, fridayHours, saturdayWorkoutChoiceBox, saturdayHours, errorRoutine));
     }
     
-    void createRoutine(Scene mainScene, UserWorkout currentUser,ChoiceBox<String>  sundayWorkoutChoiceBox, TextField sundayHours, ChoiceBox<String>  mondayWorkoutChoiceBox, TextField mondayHours, ChoiceBox<String> tuesdayWorkoutChoiceBox, TextField tuesdayHours, ChoiceBox<String> wednesdayWorkoutChoiceBox, TextField wednesdayHours, ChoiceBox<String> thursdayWorkoutChoiceBox, TextField thursdayHours, ChoiceBox<String> fridayWorkoutChoiceBox, TextField fridayHours, ChoiceBox<String> saturdayWorkoutChoiceBox, TextField saturdayHours) {
+    void createRoutine(Scene mainScene, UserWorkout currentUser,ChoiceBox<String>  sundayWorkoutChoiceBox, TextField sundayHours, ChoiceBox<String>  mondayWorkoutChoiceBox, TextField mondayHours, ChoiceBox<String> tuesdayWorkoutChoiceBox, TextField tuesdayHours, ChoiceBox<String> wednesdayWorkoutChoiceBox, TextField wednesdayHours, ChoiceBox<String> thursdayWorkoutChoiceBox, TextField thursdayHours, ChoiceBox<String> fridayWorkoutChoiceBox, TextField fridayHours, ChoiceBox<String> saturdayWorkoutChoiceBox, TextField saturdayHours, Label errorRoutine) {
+    	
+    	boolean errorInRoutine = false;
+    	
     	currentUser.setSunday(new Day(sundayWorkoutChoiceBox.getValue(), sundayHours.getText(), "Sunday"));
     	currentUser.setMonday(new Day(mondayWorkoutChoiceBox.getValue(), mondayHours.getText(), "Monday"));
     	currentUser.setTuesday(new Day(tuesdayWorkoutChoiceBox.getValue(), tuesdayHours.getText(), "Tuesday"));
@@ -750,19 +757,24 @@ public class GymDataController {
     	currentUser.setFriday(new Day(fridayWorkoutChoiceBox.getValue(), fridayHours.getText(), "Friday"));
     	currentUser.setSaturday(new Day(saturdayWorkoutChoiceBox.getValue(), saturdayHours.getText(), "Saturday"));
     	
-    	
-    	ArrayList<Day> dayList = new ArrayList<Day>();
-    	dayList.add(currentUser.getSunday());
-    	dayList.add(currentUser.getMonday());
-    	dayList.add(currentUser.getTuesday());
-    	dayList.add(currentUser.getWednesday());
-    	dayList.add(currentUser.getThursday());
-    	dayList.add(currentUser.getFriday());
-    	dayList.add(currentUser.getSaturday());
-    	
-    	
-    	currentUser.setDays(dayList);
-    	applicationStage.setScene(mainScene);
+    	if(currentUser.getSunday().getHours() == -1 || currentUser.getMonday().getHours() == -1 || currentUser.getTuesday().getHours() == -1 || currentUser.getWednesday().getHours() == -1 || currentUser.getThursday().getHours() == -1 || currentUser.getFriday().getHours() == -1 || currentUser.getSaturday().getHours() == -1 || currentUser.getSunday().getWorkoutType() == null || currentUser.getMonday().getWorkoutType() == null || currentUser.getTuesday().getWorkoutType() == null || currentUser.getWednesday().getWorkoutType() == null || currentUser.getThursday().getWorkoutType() == null || currentUser.getFriday().getWorkoutType() == null || currentUser.getSaturday().getWorkoutType() == null) {
+    		errorInRoutine = true;
+    		errorRoutine.setText("Enter valid number inout for hours between 0 to 24");
+    	}
+    	if(!errorInRoutine) {
+	    	ArrayList<Day> dayList = new ArrayList<Day>();
+	    	dayList.add(currentUser.getSunday());
+	    	dayList.add(currentUser.getMonday());
+	    	dayList.add(currentUser.getTuesday());
+	    	dayList.add(currentUser.getWednesday());
+	    	dayList.add(currentUser.getThursday());
+	    	dayList.add(currentUser.getFriday());
+	    	dayList.add(currentUser.getSaturday());
+	    	
+	    	
+	    	currentUser.setDays(dayList);
+	    	applicationStage.setScene(mainScene);
+    	}
     }
 
 }
