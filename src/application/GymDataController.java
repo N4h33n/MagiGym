@@ -734,6 +734,7 @@ public class GymDataController {
     	VBox.setMargin(createRoutineButton, new Insets(10));
     	
     	Label errorRoutine = new Label();
+    	errorRoutine.setStyle("-fx-text-fill:white");
     	errorRoutine.setText("");
     	VBox.setMargin(errorRoutine, new Insets(10));
     	
