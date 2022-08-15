@@ -32,7 +32,12 @@ public class Day  {
 	}
 	
 	void setHours(String hours) {
-		this.hours = Double.parseDouble(hours);
+		try {
+			this.hours = Double.parseDouble(hours);
+		}
+		catch(NumberFormatException e) {
+			
+		}
 	}
 
 
