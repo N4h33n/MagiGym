@@ -404,7 +404,7 @@ public class GymDataController {
     	
     	HBox saturdayContainer = new HBox();
     	Label saturdayLabel = new Label();
-    	sundayLabel.setText("Sunday : ");
+    	saturdayLabel.setText("Saturday : ");
     	ChoiceBox<String> saturdayWorkoutChoiceBox = new ChoiceBox<String>();
     	saturdayWorkoutChoiceBox.setItems(FXCollections.observableArrayList(workoutTypes));
     	TextField saturdayHours = new TextField();
