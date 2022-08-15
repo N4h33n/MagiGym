@@ -757,7 +757,7 @@ public class GymDataController {
     	
     	if(currentUser.getSunday().getHours() == -1 || currentUser.getMonday().getHours() == -1 || currentUser.getTuesday().getHours() == -1 || currentUser.getWednesday().getHours() == -1 || currentUser.getThursday().getHours() == -1 || currentUser.getFriday().getHours() == -1 || currentUser.getSaturday().getHours() == -1 || currentUser.getSunday().getWorkoutType() == null || currentUser.getMonday().getWorkoutType() == null || currentUser.getTuesday().getWorkoutType() == null || currentUser.getWednesday().getWorkoutType() == null || currentUser.getThursday().getWorkoutType() == null || currentUser.getFriday().getWorkoutType() == null || currentUser.getSaturday().getWorkoutType() == null) {
     		errorInRoutine = true;
-    		errorRoutine.setText("Enter valid number inout for hours between 0 to 24");
+    		errorRoutine.setText("Enter valid number input for hours between 0 to 24");
     	}
     	if(!errorInRoutine) {
 	    	ArrayList<Day> dayList = new ArrayList<Day>();

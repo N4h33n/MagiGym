@@ -34,7 +34,7 @@ public class User {
 		}
 		setCurrentWeight(weightEntered);
 		if (weightChange > 0) {
-			result = ("Your current weight is " + getCurrentWeight() + " kg. You gainded " + weightChange + " kg"); 
+			result = ("Your current weight is " + getCurrentWeight() + " kg. You gained " + weightChange + " kg"); 
 		}
 		else if (weightChange < 0) {
 			result = ("Your current weight is " + getCurrentWeight() + " kg. You lost " + Math.abs(weightChange) + " kg");
