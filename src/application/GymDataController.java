@@ -3,7 +3,8 @@ package application;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
+import java.util.Date;
+import java.util.Calendar;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableSet;
@@ -100,6 +101,25 @@ public class GymDataController {
     	Label userWeightLabel = new Label();
     	userWeightLabel.setText("Your weight is: " + currentUser.getCurrentWeight() + "kg");
     	
+    	Label workoutLabel = new Label();
+    	Day currentDay;
+    	Calendar calendar = Calendar.getInstance();
+    	calendar.setTime(new Date());
+    	int dayToday = calendar.get(Calendar.DAY_OF_WEEK);
+    	
+    	
+    	for (int i = 0; i < currentUser.getDays().size(); i++) {
+    		if (i+1 == dayToday) {
+    			if (currentUser.getDays().get(i).getWorkoutType() == "Rest") {
+    				workoutLabel.setText("You are not set to workout today.");
+    			}
+    			else {
+    				workoutLabel.setText("You are set to do " + currentUser.getDays().get(i).getWorkoutType() + " for " + currentUser.getDays().get(i).getHours() + " hours.");
+    			}
+    			
+    		}
+    	}
+    	
     	HBox weightContainer = new HBox();
     	Label inputWeightLabel = new Label();
     	inputWeightLabel.setText("Input your current weight: ");
@@ -123,7 +143,7 @@ public class GymDataController {
     	
     	Button logOutButton = new Button("Log Out");
     	logOutButton.setOnAction(logOutEvent -> applicationStage.setScene(mainScene));
-    	logInContainer.getChildren().addAll(userNameLabel, userAgeLabel, userWeightLabel, bmiLabel, weightContainer, enterWeight, weightUpdateLabel, logOutButton);
+    	logInContainer.getChildren().addAll(userNameLabel, userAgeLabel, userWeightLabel, bmiLabel, workoutLabel, weightContainer, enterWeight, weightUpdateLabel, logOutButton);
     	
 
       Scene logInScene = new Scene(logInContainer);
@@ -346,7 +366,7 @@ public class GymDataController {
     	workoutTypes.add("Legs");
     	workoutTypes.add("Light workout");
     	workoutTypes.add("General Wrokout");
-    	workoutTypes.add("General Workout");
+    	workoutTypes.add("Rest");
     	
     	HBox sundayContainer = new HBox();
     	Label sundayLabel = new Label();
@@ -409,7 +429,7 @@ public class GymDataController {
     	saturdayWorkoutChoiceBox.setItems(FXCollections.observableArrayList(workoutTypes));
     	TextField saturdayHours = new TextField();
     	Label saturdayHoursLabel = new Label("Hours");
-    	sundayContainer.getChildren().addAll(saturdayLabel, saturdayWorkoutChoiceBox, saturdayHours, saturdayHoursLabel);
+    	saturdayContainer.getChildren().addAll(saturdayLabel, saturdayWorkoutChoiceBox, saturdayHours, saturdayHoursLabel);
     	
     	Button createRoutineButton = new Button();
     	createRoutineButton.setText("Create Routine");
