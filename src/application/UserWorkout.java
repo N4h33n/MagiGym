@@ -21,7 +21,7 @@ public class UserWorkout extends User {
 	
 	
 
-	ArrayList<Day> getDay() {
+	ArrayList<Day> getDays() {
 		return days;
 		
 	
