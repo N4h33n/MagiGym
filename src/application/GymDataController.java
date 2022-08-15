@@ -48,6 +48,7 @@ public class GymDataController {
     	BackgroundFill background_fill = new BackgroundFill(Color.web("#2E4057"), CornerRadii.EMPTY, Insets.EMPTY);
     	Background background = new Background(background_fill);
     	logInContainer.setBackground(background);
+    	logInContainer.setStyle("-fx-font: 12 SansSerif");
     
     	Label userNameLabel = new Label();
     	userNameLabel.setText("Name : " + currentUser.getFirstName() + " " + currentUser.getLastName());
@@ -112,6 +113,7 @@ public class GymDataController {
     	BackgroundFill background_fill = new BackgroundFill(Color.web("#2E4057"), CornerRadii.EMPTY, Insets.EMPTY);
     	Background background = new Background(background_fill);
     	logInContainer.setBackground(background);
+    	logInContainer.setStyle("-fx-font: 12 SansSerif");
     	
     
     	Label userNameLabel = new Label();
@@ -131,7 +133,6 @@ public class GymDataController {
     	VBox.setMargin(userWeightLabel, new Insets(10));
     	
     	Label workoutLabel = new Label();
-    	Day currentDay;
     	Calendar calendar = Calendar.getInstance();
     	calendar.setTime(new Date());
     	int dayToday = calendar.get(Calendar.DAY_OF_WEEK);
@@ -230,6 +231,7 @@ public class GymDataController {
     	BackgroundFill background_fill = new BackgroundFill(Color.web("#2E4057"), CornerRadii.EMPTY, Insets.EMPTY);
     	Background background = new Background(background_fill);
     	createAccContainer.setBackground(background);
+    	createAccContainer.setStyle("-fx-font: 12 SansSerif");
     	
     	HBox firstNameContainer = new HBox();
     	Label firstNameLabel = new Label();
@@ -460,6 +462,7 @@ public class GymDataController {
     	BackgroundFill background_fill = new BackgroundFill(Color.web("#2E4057"), CornerRadii.EMPTY, Insets.EMPTY);
     	Background background = new Background(background_fill);
     	workoutRoutineContainer.setBackground(background);
+    	workoutRoutineContainer.setStyle("-fx-font: 12 SansSerif");
     	
     	ArrayList<String> workoutTypes = new ArrayList<String>();
     	workoutTypes.add("Full Body");
