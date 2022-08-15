@@ -34,7 +34,7 @@ public class GymDataController {
     @FXML
     private ChoiceBox<String> selectUserChoiceBox;
     
-    private UsersData members = new UsersData(new ArrayList<User>());
+    
 
     
    Map<String, User> memberMap = new HashMap<>();
@@ -493,7 +493,7 @@ public class GymDataController {
     		}
         	
         	if(!errorInCreateAcc) {
-        		members.addUser(newUser);
+        		
         		listNames.add(firstNameTextField.getText() + " " + lastNameTextField.getText());
         		selectUserChoiceBox.setItems(FXCollections.observableArrayList(listNames));
         		applicationStage.setScene(mainScene);
@@ -560,7 +560,7 @@ public class GymDataController {
     		}
         	
         	if(!errorInCreateAcc) {
-        		members.addUser(newUser);
+        		
         		listNames.add(firstNameTextField.getText() + " " + lastNameTextField.getText());
         		selectUserChoiceBox.setItems(FXCollections.observableArrayList(listNames));
         		setWorkoutScene(mainScene, newUser);
