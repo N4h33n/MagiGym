@@ -43,6 +43,9 @@ public class GymDataController {
     void getLogInScene(User currentUser) {
     	Scene mainScene = applicationStage.getScene();
     	VBox logInContainer = new VBox();
+    	// we made use of Background and BackgroundFill classes to match the background of each scene to the main scene.
+    	// we found the methods and their formats from here:
+    	// https://www.geeksforgeeks.org/javafx-background-class/
     	BackgroundFill background_fill = new BackgroundFill(Color.web("#2E4057"), CornerRadii.EMPTY, Insets.EMPTY);
     	Background background = new Background(background_fill);
     	logInContainer.setBackground(background);
@@ -50,7 +53,11 @@ public class GymDataController {
     
     	Label userNameLabel = new Label();
     	userNameLabel.setText("Name : " + currentUser.getFirstName() + " " + currentUser.getLastName());
+    	// we found out how to change the color of the text in a field from the following link:
+    	// https://stackoverflow.com/questions/24702542/how-to-change-the-color-of-text-in-javafx-textfield
     	userNameLabel.setStyle("-fx-text-fill:white");
+    	// we found out about hard coding margins for elements in the scene to make it look cleaner from here:
+    	// https://www.demo2s.com/java/javafx-space-padding-and-margin.html
     	VBox.setMargin(userNameLabel, new Insets(10));
     	
     	Label userAgeLabel = new Label();
@@ -143,6 +150,8 @@ public class GymDataController {
     	VBox.setMargin(userWeightLabel, new Insets(10));
     	
     	Label workoutLabel = new Label();
+    	// we found out how to use a combination of the Calendar and Date libraries to compare a given day to the current day in the week from here:
+    	// https://www.baeldung.com/java-get-day-of-week
     	Calendar calendar = Calendar.getInstance();
     	calendar.setTime(new Date());
     	int dayToday = calendar.get(Calendar.DAY_OF_WEEK);
@@ -209,6 +218,14 @@ public class GymDataController {
     	applicationStage.setScene(logInScene);
     }
     
+    /**
+     * Changes user information to reflect new weight input by the user and also displays it on the screen
+     * @param weightUpdateLabel a label which displays the weight change from the previous weight
+     * @param userWeightLabel the label displaying the user's current weight to be updated
+     * @param bmiLabel a label displaying the user's updated bmi
+     * @param currentUser the User who's data is being manipulated
+     * @param updatedWeight the updated weight input by the user
+     */
     void updateWeightScene(Label weightUpdateLabel, Label userWeightLabel, Label bmiLabel, User currentUser, String updatedWeight) {
     	
     	weightUpdateLabel.setText(currentUser.updateWeight(updatedWeight));
@@ -217,8 +234,12 @@ public class GymDataController {
     	
     	
     }
-   
+
    @FXML
+   /**
+    * initiates the log in process by checking whether input for login is valid. If any error, suitable message is displayed
+    * using labels. If valid, method to change scene is called.
+    */
    void logIn() {
 	   String selectedUser = selectUserChoiceBox.getValue();
 	   User userSelected = memberMap.get(selectedUser);
@@ -231,7 +252,11 @@ public class GymDataController {
 			   if(passwordTextField.getText().equals(currentUser.getPassword())) {
 				   logInErrorLabel.setText("");
 				   getLogInScene(currentUser);
+				   // we found out how to clear previous input for a text field from here to prevent privacy issues:
+				   // https://o7planning.org/11093/javafx-textfield
 				   passwordTextField.clear();
+				   // we found out about clearing a selected choice for a combobox from here and applied the same method for a chociebox:
+				   // https://stackoverflow.com/questions/12142518/combobox-clearing-value-issue
 				   selectUserChoiceBox.valueProperty().set(null);
 			   }
 			   else {
@@ -254,7 +279,10 @@ public class GymDataController {
    }
 
     
-
+   /**
+    * get the scene where the user inputs information to create an account for them
+    * @param event an ActionEvent
+    */
     @FXML
     void getCreateAccountScene(ActionEvent event) {
     	Scene mainScene = applicationStage.getScene();
@@ -408,6 +436,7 @@ public class GymDataController {
     	
     	Button cancelButton = new Button();
     	cancelButton.setText("Cancel");
+    	// set action of the cancel button to retur to the main scene
     	cancelButton.setOnAction(cancelEvent -> applicationStage.setScene(mainScene));
     	HBox.setMargin(cancelButton, new Insets(10));
     	
@@ -422,6 +451,7 @@ public class GymDataController {
     	
     	Scene createAccountScene = new Scene(createAccContainer);
     	applicationStage.setScene(createAccountScene);
+    	// set action of the create account button to use the createAccount method to try to create an account using given user inputs
     	createAccButton.setOnAction(createAccEvent -> createAccount(mainScene, firstNameTextField, errorFirstName, lastNameTextField, errorLastName, passwordTextField, errorPassword, ageTextField, errorAge, genderChoiceBox , errorGender, heightTextField, errorHeight, weightTextField, errorWeight, userWorkoutCheckBox));
     	
     	
@@ -430,6 +460,10 @@ public class GymDataController {
     
     void createAccount(Scene mainScene, TextField firstNameTextField, Label errorFirstName, TextField lastNameTextField , Label errorLastName, TextField passwordTextField , Label errorPassword,TextField ageTextField , Label errorAge, ChoiceBox<String> genderChoiceBox , Label errorGender, TextField heightTextField, Label errorHeight, TextField weightTextField, Label errorWeight,CheckBox userWorkoutCheckBox) {
     	boolean errorInCreateAcc = false; 
+    	// we found out about using a hashmap to store references to objects using user input instead of hard coding references from here:
+    	// https://stackoverflow.com/questions/22915233/how-to-change-the-name-of-a-object-using-user-input/22915480#22915480
+    	// remove and put methods for hashmaps were found from the documentation for the class:
+    	// https://docs.oracle.com/javase/8/docs/api/java/util/Map.html
     	if(!userWorkoutCheckBox.isSelected()) {
     		memberMap.put(firstNameTextField.getText() + " " + lastNameTextField.getText(), new User(firstNameTextField.getText(), lastNameTextField.getText(), passwordTextField.getText(), ageTextField.getText() , genderChoiceBox.getValue(), heightTextField.getText(), weightTextField.getText(), userWorkoutCheckBox.isSelected()));
     	}
@@ -560,6 +594,8 @@ public class GymDataController {
         	
         	if(!errorInCreateAcc) {
         		listNames.add(firstNameTextField.getText() + " " + lastNameTextField.getText());
+        		// we found out about setting the options for a choicebox using an ArrayList in the form of an observableArrayList from here:
+        		// https://stackoverflow.com/questions/26195243/creating-an-observable-list-collection
         		selectUserChoiceBox.setItems(FXCollections.observableArrayList(listNames));
         		setWorkoutScene(mainScene, newUser);
         	}
@@ -743,10 +779,33 @@ public class GymDataController {
     	createRoutineButton.setOnAction(createRoutineEvent -> createRoutine(mainScene, currentUser, sundayWorkoutChoiceBox, sundayHours, mondayWorkoutChoiceBox, mondayHours, tuesdayWorkoutChoiceBox, tuesdayHours, wednesdayWorkoutChoiceBox, wednesdayHours, thursdayWorkoutChoiceBox, thursdayHours, fridayWorkoutChoiceBox, fridayHours, saturdayWorkoutChoiceBox, saturdayHours, errorRoutine));
     }
     
+    /**
+     * Uses the UserWorkout class and the Day class and creates a personalized workout routine for the specified user
+     * using information input by the user
+     * @param mainScene the home-page scene of the application
+     * @param currentUser the user for whom the routine is being created
+     * @param sundayWorkoutChoiceBox choicebox to select type of workout dedicated for sundays
+     * @param sundayHours text field to enter hours dedicated to the selected workout on sundays
+     * @param mondayWorkoutChoiceBox choicebox to select type of workout dedicated for mondays
+     * @param mondayHours text field to enter hours dedicated to the selected workout on mondays
+     * @param tuesdayWorkoutChoiceBox choicebox to select type of workout dedicated for tuesdays
+     * @param tuesdayHours text field to enter hours dedicated to the selected workout on tuesdays
+     * @param wednesdayWorkoutChoiceBox choicebox to select type of workout dedicated for wednesdays
+     * @param wednesdayHours text field to enter hours dedicated to the selected workout on wednesdays
+     * @param thursdayWorkoutChoiceBox choicebox to select type of workout dedicated for thursdays
+     * @param thursdayHours text field to enter hours dedicated to the selected workout on thursdays
+     * @param fridayWorkoutChoiceBox choicebox to select type of workout dedicated for fridays
+     * @param fridayHours text field to enter hours dedicated to the selected workout on fridays
+     * @param saturdayWorkoutChoiceBox choicebox to select type of workout dedicated for saturdays
+     * @param saturdayHours text field to enter hours dedicated to the selected workout on saturdays
+     * @param errorRoutine label which changes to indicate if there is an error in any of the user input
+     */
     void createRoutine(Scene mainScene, UserWorkout currentUser,ChoiceBox<String>  sundayWorkoutChoiceBox, TextField sundayHours, ChoiceBox<String>  mondayWorkoutChoiceBox, TextField mondayHours, ChoiceBox<String> tuesdayWorkoutChoiceBox, TextField tuesdayHours, ChoiceBox<String> wednesdayWorkoutChoiceBox, TextField wednesdayHours, ChoiceBox<String> thursdayWorkoutChoiceBox, TextField thursdayHours, ChoiceBox<String> fridayWorkoutChoiceBox, TextField fridayHours, ChoiceBox<String> saturdayWorkoutChoiceBox, TextField saturdayHours, Label errorRoutine) {
     	
+    	// create a boolean to keep track of error in any input
     	boolean errorInRoutine = false;
     	
+    	// attempt to set a workout routine for each day for the user using method in the UserWorkout class
     	currentUser.setSunday(new Day(sundayWorkoutChoiceBox.getValue(), sundayHours.getText(), "Sunday"));
     	currentUser.setMonday(new Day(mondayWorkoutChoiceBox.getValue(), mondayHours.getText(), "Monday"));
     	currentUser.setTuesday(new Day(tuesdayWorkoutChoiceBox.getValue(), tuesdayHours.getText(), "Tuesday"));
@@ -755,10 +814,15 @@ public class GymDataController {
     	currentUser.setFriday(new Day(fridayWorkoutChoiceBox.getValue(), fridayHours.getText(), "Friday"));
     	currentUser.setSaturday(new Day(saturdayWorkoutChoiceBox.getValue(), saturdayHours.getText(), "Saturday"));
     	
+    	// if any of the attributes are the default value in the UserWorkout class, that means there is an error in the input
+    	// change boolean to true and set the label to reflect the error
     	if(currentUser.getSunday().getHours() == -1 || currentUser.getMonday().getHours() == -1 || currentUser.getTuesday().getHours() == -1 || currentUser.getWednesday().getHours() == -1 || currentUser.getThursday().getHours() == -1 || currentUser.getFriday().getHours() == -1 || currentUser.getSaturday().getHours() == -1 || currentUser.getSunday().getWorkoutType() == null || currentUser.getMonday().getWorkoutType() == null || currentUser.getTuesday().getWorkoutType() == null || currentUser.getWednesday().getWorkoutType() == null || currentUser.getThursday().getWorkoutType() == null || currentUser.getFriday().getWorkoutType() == null || currentUser.getSaturday().getWorkoutType() == null) {
     		errorInRoutine = true;
     		errorRoutine.setText("Enter valid number input for hours between 0 to 24");
     	}
+    
+    	/* if no error in input, create a new ArrayList of Days to add the workout routine to and set the Days instance for the
+    	user to this list */
     	if(!errorInRoutine) {
 	    	ArrayList<Day> dayList = new ArrayList<Day>();
 	    	dayList.add(currentUser.getSunday());
@@ -771,6 +835,7 @@ public class GymDataController {
 	    	
 	    	
 	    	currentUser.setDays(dayList);
+	    	// return to main scene upon successful creation of routine
 	    	applicationStage.setScene(mainScene);
     	}
     }
