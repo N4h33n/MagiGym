@@ -42,6 +42,11 @@ public class GymDataController {
    @FXML
    private Label logInErrorLabel;
    
+   /**
+    * get the scene where it shows the users data, bmi, and updates weight to the current weight. 
+    * @param currentUser
+    */
+   
     void getLogInScene(User currentUser) {
     	Scene mainScene = applicationStage.getScene();
     	VBox logInContainer = new VBox();
