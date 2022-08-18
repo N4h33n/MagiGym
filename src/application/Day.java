@@ -1,7 +1,12 @@
 package application;
 
 public class Day  {
-	
+
+	/**
+	 * 
+	 * @author Naheen Kabir, Raisa Fairuz, Tahamina Mostafa Chowdhury
+	 *
+	 */
 
 	
 
