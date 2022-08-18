@@ -42,7 +42,7 @@ public class GymDataController {
    
    /**
     * get the scene where it shows the users data, bmi, and updates weight to the current weight. 
-    * @param currentUser
+    * @param currentUser the user whose data is being manipulated
     */
    
     void getLogInScene(User currentUser) {
@@ -124,6 +124,11 @@ public class GymDataController {
       
     	applicationStage.setScene(logInScene);
     }
+    
+    /**
+     * get the scene where it shows the users data, bmi, and updates weight to the current weight and the type of workout they have to do today and for how many hours. 
+     * @param currentUser the user whose data is being manipulated
+     */
     
     void getLogInWorkoutScene(UserWorkout currentUser) {
     	Scene mainScene = applicationStage.getScene();
@@ -462,6 +467,25 @@ public class GymDataController {
     	
 
     }
+    /**
+     * error checks every single parameter 
+     * @param mainScene the home-page scene of the application
+     * @param firstNameTextField the first name of the user
+     * @param errorFirstName to indicate if there is any error in any user input for the first name
+     * @param lastNameTextField the last name of the user
+     * @param errorLastName to indicate if there is any error in any user input for the last name
+     * @param passwordTextField the login password of the user
+     * @param errorPassword to indicate if there is any error in any user input for the password
+     * @param ageTextField the age of the user
+     * @param errorAge indicates if there is any error in the age input
+     * @param genderChoiceBox the gender of the user whether the user is a male or female
+     * @param errorGender indicated if there is any error in gender
+     * @param heightTextField the height of the user
+     * @param errorHeight indicate if there is any error in the height of the user
+     * @param weightTextField the weight of the user
+     * @param errorWeight checks if there is any error in  the weight
+     * @param userWorkoutCheckBox does an error check for the users with workout routine and no workout routine
+     */
     
     void createAccount(Scene mainScene, TextField firstNameTextField, Label errorFirstName, TextField lastNameTextField , Label errorLastName, TextField passwordTextField , Label errorPassword,TextField ageTextField , Label errorAge, ChoiceBox<String> genderChoiceBox , Label errorGender, TextField heightTextField, Label errorHeight, TextField weightTextField, Label errorWeight,CheckBox userWorkoutCheckBox) {
     	boolean errorInCreateAcc = false; 
@@ -613,6 +637,11 @@ public class GymDataController {
     	
     	
     }
+    /**
+     * gets the scene where the user inputs what type of workout and for how many hours they want to do it
+     * @param mainScene the home-page scene of the application
+     * @param currentUser the user whose data is being manipulated
+     */
     
 
     void setWorkoutScene(Scene mainScene, UserWorkout currentUser) {
